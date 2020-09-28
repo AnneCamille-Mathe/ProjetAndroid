@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/item1" android:title="Liste des projets"></item>
+    <item android:id="@+id/item2" android:titleCondensed="Item 2" android:title="Création jury"></item>
+    <item android:id="@+id/item3" android:title="Notes et commentaires"></item>
+</menu>
