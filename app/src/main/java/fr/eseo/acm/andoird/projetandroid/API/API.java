@@ -1,8 +1,10 @@
 package fr.eseo.acm.andoird.projetandroid.API;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,11 +26,13 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
+import fr.eseo.acm.andoird.projetandroid.MainActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.objets.SSLUtil;
 
@@ -63,6 +67,8 @@ public class API   extends AppCompatActivity {
     //FROM MOVIESEO
     public String getReplyFromHttpUrl(URL url) throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         this.handleSSLHandshake();
+
+        /*
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             Scanner scanner = new Scanner(urlConnection.getInputStream());
@@ -75,9 +81,23 @@ public class API   extends AppCompatActivity {
             }
             urlConnection.disconnect();
             return null;
+        } catch(Exception ex) {
+            ex.printStackTrace();
         } finally {
             urlConnection.disconnect();
         }
+
+        return null;*/
+
+        try {
+            return new NetworkTask(url).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
@@ -86,6 +106,61 @@ public class API   extends AppCompatActivity {
     private void handleSSLHandshake() {
         SSLContext sslContext = SSLUtil.getAppSSLContext(this.getApplication().getApplicationContext());
         HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
+    }
+
+
+
+    /**
+     * Represents an asynchronous login/registration task used to authenticate
+     * the user.
+     */
+    private static class NetworkTask extends AsyncTask<Void, Void, String> {
+
+        private final URL url;
+        NetworkTask(URL url) {
+            this.url = url;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            System.out.println("START");
+            HttpURLConnection urlConnection = null;
+            try {
+                urlConnection = (HttpURLConnection) url.openConnection();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                Scanner scanner = new Scanner(urlConnection.getInputStream());
+                scanner.useDelimiter("\\A");
+                boolean hasInput = scanner.hasNext();
+                String scannerText = scanner.next();
+                Log.d("ASYNC", scannerText);
+                if (hasInput) {
+                    return scannerText;
+                }
+                urlConnection.disconnect();
+                return null;
+            } catch(Exception ex) {
+                ex.printStackTrace();
+            } finally {
+                urlConnection.disconnect();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            System.out.println("STOP");
+        }
     }
 
     /*

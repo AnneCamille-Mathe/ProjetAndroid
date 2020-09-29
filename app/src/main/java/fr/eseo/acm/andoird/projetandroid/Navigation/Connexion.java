@@ -45,6 +45,7 @@ public class Connexion extends API {
         EditText username = (EditText)findViewById(R.id.username);
         EditText password = (EditText)findViewById(R.id.password);
         URL url = this.buildApiUrl(username.getText().toString(), password.getText().toString());
+        System.out.println(url.toString());
         System.out.println("answer: "+ this.getReplyFromHttpUrl(url));
         //Ajouter ici le menu
     }
