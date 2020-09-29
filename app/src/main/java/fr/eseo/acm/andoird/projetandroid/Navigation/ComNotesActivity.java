@@ -1,8 +1,10 @@
-package fr.eseo.acm.andoird.projetandroid;
+package fr.eseo.acm.andoird.projetandroid.Navigation;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import fr.eseo.acm.andoird.projetandroid.R;
 
 public class ComNotesActivity extends AppCompatActivity {
     @Override

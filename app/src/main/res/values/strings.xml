@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">So Manager</string>
+    <string name="feedbacktitle">Ajout d un nouveau jury</string>
+    <string name="feedbackname">Nom du jury</string>
+    <string name="feedbackemail">Email du jury</string>
+    <string name="feedbackresponse">Envoi de la réponse</string>
+
+    <string name="id">Saisir l ID</string>
+    <string name="password">Saisir le mot de passe</string>
+    <string name="name_prompt">Nom utilisateur</string>
+    <string name="pass_prompt">Mot de passe</string>
+
 </resources>

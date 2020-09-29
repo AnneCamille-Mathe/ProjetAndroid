@@ -7,14 +7,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import fr.eseo.acm.andoird.projetandroid.Navigation.ComNotesActivity;
+import fr.eseo.acm.andoird.projetandroid.Navigation.Connexion;
+import fr.eseo.acm.andoird.projetandroid.Navigation.JuryActivity;
+import fr.eseo.acm.andoird.projetandroid.Navigation.ProjetActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_connexion);
+        /*
+        Button connexion = findViewById(R.id.connexion);
+        connexion.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                selectConnexion();
+            }
+        });*/
+        selectConnexion();
     }
 
+    public void selectConnexion(){
+        Intent intent = new Intent(this, Connexion.class);
+        startActivity(intent);
+    }
+
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -27,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected (MenuItem item)
     {
+
         switch(item.getItemId())
         {
             case R.id.item1:
@@ -36,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 openActivityJury();
                 break;
                 case R.id.item3:
+                    openActivityNotesCom();
+                    break;
 
         }
         return super.onOptionsItemSelected(item);
@@ -51,6 +75,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openActivityNotesCom(){
+        Intent intent = new Intent(this, ComNotesActivity.class);
+        startActivity(intent);
+    }
+*/
 
 
 }
