@@ -25,10 +25,12 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Scanner;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
 import fr.eseo.acm.andoird.projetandroid.R;
+import fr.eseo.acm.andoird.projetandroid.objets.SSLUtil;
 
 public class API   extends AppCompatActivity {
     static final String API_BASE_URL = "https://192.168.4.248/pfe/webservice.php?";
@@ -47,17 +49,20 @@ public class API   extends AppCompatActivity {
     static final String API_PASS = "pass";
 
 
-
-    public static URL buildApiUrl(String movieName, String year) {
+    //FROM MOVIESEO
+    public URL buildApiUrl(String username, String password) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        this.handleSSLHandshake();
         try {
-            return new URL(Uri.parse(API_BASE_URL).buildUpon().appendQueryParameter(API_KEY_QUERY, API_LOGON).appendQueryParameter(API_USER, movieName).appendQueryParameter(API_PASS, year).build().toString());
+            return new URL(Uri.parse(API_BASE_URL).buildUpon().appendQueryParameter(API_KEY_QUERY, API_LOGON).appendQueryParameter(API_USER, username).appendQueryParameter(API_PASS, password).build().toString());
         } catch (MalformedURLException mue) {
             mue.printStackTrace();
             return null;
         }
     }
 
-    public static String getReplyFromHttpUrl(URL url) throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+    //FROM MOVIESEO
+    public String getReplyFromHttpUrl(URL url) throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+        this.handleSSLHandshake();
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             Scanner scanner = new Scanner(urlConnection.getInputStream());
@@ -75,15 +80,53 @@ public class API   extends AppCompatActivity {
         }
     }
 
-    public static String parseForPoster(String results) {
-        Log.d("parseForPoster", results);
-        try {
-            String posterPath = new JSONObject(results).getJSONArray("results").getJSONObject(0).getString("poster_path");
-            Log.d("Poster path", posterPath);
-            return posterPath;
-        } catch (JSONException e) {
-            return null;
-        }
+    /**
+     * Créer la connexion sécurisée
+     */
+    private void handleSSLHandshake() {
+        SSLContext sslContext = SSLUtil.getAppSSLContext(this.getApplication().getApplicationContext());
+        HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
     }
 
+    /*
+    public void certificat() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, KeyManagementException {
+        //DEBUT
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+
+        // From https://www.washington.edu/itconnect/security/ca/load-der.crt
+        Log.d("certificate", Integer.toString(R.raw.dis_inter_ca));
+
+        InputStream caInput =
+                //this.context.getResources().openRawResource(R.raw.dis_inter_ca);
+                getResources().openRawResource(R.raw.dis_inter_ca);
+        Log.d("certificateIn", caInput.toString());
+
+        Certificate certif;
+        try {
+            certif = cf.generateCertificate(caInput);
+            System.out.println("certif=" + ((X509Certificate)
+                    certif).getSubjectDN());
+        } finally {
+            caInput.close();
+        }
+
+        // Create a KeyStore containing our trusted CAs
+        String keyStoreType = KeyStore.getDefaultType();
+        KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+        keyStore.load(null, null);
+        keyStore.setCertificateEntry("ca", certif);
+
+        // Create a TrustManager that trusts the CAs in our KeyStore
+        String tmfAlgorithm =
+                TrustManagerFactory.getDefaultAlgorithm();
+        TrustManagerFactory tmf =
+                TrustManagerFactory.getInstance(tmfAlgorithm);
+        tmf.init(keyStore);
+
+        // Create an SSLContext that uses our TrustManager
+        SSLContext context = SSLContext.getInstance("TLS");
+        context.init(null, tmf.getTrustManagers(), null);
+        //FIN
+    }
+    */
 }
