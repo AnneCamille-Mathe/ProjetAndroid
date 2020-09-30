@@ -37,7 +37,7 @@ import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.objets.SSLUtil;
 
 public class API   extends AppCompatActivity {
-    static final String API_BASE_URL = "https://192.168.4.248/pfe/webservice.php?";
+    static final String API_BASE_URL = "https://172.24.5.16/pfe/webservice.php?";
     static final String API_KEY_QUERY = "q";
     static final String API_LIPRJ = "LIPRJ";
     static final String API_MYPRJ = "MYPRJ";
