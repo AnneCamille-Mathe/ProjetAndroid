@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,7 +50,7 @@ public class Connexion extends API {
         visitor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_visitor);
+                Connexion.this.visitor();
             }
         });
     }
@@ -59,6 +62,11 @@ public class Connexion extends API {
         URL url = this.buildApiUrl(API.API_LOGON, username.getText().toString(), password.getText().toString());
         System.out.println(url.toString());
         System.out.println("answer: "+ this.getReplyFromHttpUrl(url));
-        //Ajouter ici le menu_com
     }
+
+    public void visitor(){
+        Intent intent = new Intent(this, VisitorProjetActivity.class);
+        startActivityForResult(intent, 1);
+    }
+
 }
