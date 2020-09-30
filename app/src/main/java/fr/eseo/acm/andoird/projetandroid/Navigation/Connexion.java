@@ -1,6 +1,8 @@
 package fr.eseo.acm.andoird.projetandroid.Navigation;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,7 +42,17 @@ public class Connexion extends API {
                 }
             }
         });
+
+        Button visitor = (Button) findViewById(R.id.visitor);
+        visitor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_visitor);
+            }
+        });
     }
+
+
     public void login(View v) throws IOException, KeyStoreException, KeyManagementException, NoSuchAlgorithmException, CertificateException {
         EditText username = (EditText)findViewById(R.id.username);
         EditText password = (EditText)findViewById(R.id.password);
