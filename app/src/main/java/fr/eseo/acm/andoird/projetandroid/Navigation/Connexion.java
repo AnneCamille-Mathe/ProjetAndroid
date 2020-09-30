@@ -1,6 +1,8 @@
 package fr.eseo.acm.andoird.projetandroid.Navigation;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,7 @@ import javax.net.ssl.TrustManagerFactory;
 
 import fr.eseo.acm.andoird.projetandroid.R;
 import  fr.eseo.acm.andoird.projetandroid.API.API;
+import fr.eseo.acm.andoird.projetandroid.servicesAPI.LOGONService;
 
 public class Connexion extends API {
 
@@ -46,7 +49,15 @@ public class Connexion extends API {
         EditText password = (EditText)findViewById(R.id.password);
         URL url = this.buildApiUrl(username.getText().toString(), password.getText().toString());
         System.out.println(url.toString());
-        System.out.println("answer: "+ this.getReplyFromHttpUrl(url));
+        //System.out.println("answer: "+ this.getReplyFromHttpUrl(url) + "fin");
+
+        //Récupérer le token
+        LOGONService log = new LOGONService();
+        String token = log.getToken(this.getReplyFromHttpUrl(url));
+
         //Ajouter ici le menu
+        /*
+       Intent intent = new Intent(this, ChoixMenus.class);
+       startActivity(intent);*/
     }
 }
