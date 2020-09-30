@@ -26,27 +26,25 @@ public class ProjectsSummaryListViewAdapter extends RecyclerView.Adapter<Project
 
     @Override
     public void onBindViewHolder(@NonNull final MovieSummaryListViewHolder holder, final int position){
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               ProjectsSummaryListViewAdapter.this.fragment.selectMovie(position);
+            }
+        });
     }
 
-    //TODO - Return le nombre de projets
     public int getItemCount(){
         return 10;
     }
 
     class MovieSummaryListViewHolder extends RecyclerView.ViewHolder {
         final TextView movieTitle;
-        final TextView movieYear;
-        final TextView movieSynopsis;
-        final TextView movieSynopsisLabel;
         final TextView movieGenre;
 
         public MovieSummaryListViewHolder(@NonNull View itemView){
             super(itemView);
             this.movieTitle = itemView.findViewById(R.id.summary_movie_title);
-            this.movieYear = itemView.findViewById(R.id.summary_movie_year);
-            this.movieSynopsis = itemView.findViewById(R.id.summary_movie_synopsis);
-            this.movieSynopsisLabel = itemView.findViewById(R.id.summary_movie_synopsis_label);
             this.movieGenre = itemView.findViewById(R.id.summary_movie_genre);
 
         }

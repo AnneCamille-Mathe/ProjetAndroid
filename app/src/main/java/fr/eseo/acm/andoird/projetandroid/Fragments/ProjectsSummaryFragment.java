@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import fr.eseo.acm.andoird.projetandroid.Navigation.ComProjetActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.vues.ProjectsSummaryListViewAdapter;
 
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ProjectsSummaryFragment extends Fragment {
+
     private ProjectsSummaryListViewAdapter viewAdapter;
 
     public static ProjectsSummaryFragment newInstance(){
@@ -37,5 +40,10 @@ public class ProjectsSummaryFragment extends Fragment {
         viewAdapter = new ProjectsSummaryListViewAdapter(this);
         recycler.setAdapter(viewAdapter);
     }
+
+    public void selectMovie(int movieId){
+        ((ComProjetActivity)getActivity()).selectMovie(movieId);
+    }
+
 
 }

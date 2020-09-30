@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_movie_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:elevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/movie_details_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:maxLines="3"
+                android:minLines="3"
+                android:text="@string/dummy_movie_title"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/movie_details_poster"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/movie_details_Genres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/dummy_movie_genres"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/movie_details_poster"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_country" />
+
+            <TextView
+                android:id="@+id/movie_details_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/dummy_movie_year"
+                app:layout_constraintEnd_toEndOf="@+id/movie_details_title"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_title" />
+
+            <TextView
+                android:id="@+id/movie_details_director_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/movie_director_label"
+                app:layout_constraintStart_toStartOf="@+id/movie_details_Genres"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_Genres" />
+
+            <TextView
+                android:id="@+id/movie_details_director"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/dummy_movie_director"
+                app:layout_constraintEnd_toEndOf="@+id/movie_details_year"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/movie_details_director_label"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_Genres"
+                android:layout_marginLeft="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/movie_details_roles"
+                android:layout_width="0dp"
+                android:layout_height="103dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_roles_label" />
+
+            <TextView
+                android:id="@+id/movie_details_synopsis_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/movie_synopsis_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_roles"
+                android:layout_marginLeft="16dp" />
+
+            <TextView
+                android:id="@+id/movie_details_synopsis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/dummy_movie_synopsis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_synopsis_title"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="16dp" />
+
+            <Button
+                android:id="@+id/movie_details_review_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/movie_reviews_detail"
+                app:layout_constraintEnd_toEndOf="@+id/movie_details_synopsis"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_synopsis" />
+
+            <TextView
+                android:id="@+id/movie_details_roles_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/movie_roles_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_poster"
+                android:layout_marginLeft="16dp" />
+
+            <TextView
+                android:id="@+id/movie_details_country"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/dummy_movie_country"
+                app:layout_constraintEnd_toStartOf="@+id/movie_details_year"
+                app:layout_constraintStart_toEndOf="@+id/movie_details_poster"
+                app:layout_constraintTop_toBottomOf="@+id/movie_details_title" />
+
+            <ImageView
+                android:id="@+id/movie_details_poster"
+                android:layout_width="128dp"
+                android:layout_height="192dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/movie_poster_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="16dp" />
+
+
+
+            <TextView
+                android:id="@+id/movie_details_average_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/dummy_movie_score"
+                app:layout_constraintBottom_toBottomOf="@+id/movie_details_review_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/movie_details_review_button"
+                android:layout_marginLeft="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>
