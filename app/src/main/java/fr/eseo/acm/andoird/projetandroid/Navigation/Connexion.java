@@ -56,8 +56,9 @@ public class Connexion extends API {
         String token = log.getToken(this.getReplyFromHttpUrl(url));
 
         //Ajouter ici le menu
-        /*
-       Intent intent = new Intent(this, ChoixMenus.class);
-       startActivity(intent);*/
+        if(token != null){
+            Intent intent = new Intent(this, ChoixMenus.class);
+            startActivity(intent);
+        }
     }
 }
