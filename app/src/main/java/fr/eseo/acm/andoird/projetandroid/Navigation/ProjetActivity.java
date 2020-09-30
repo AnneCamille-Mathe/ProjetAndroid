@@ -26,7 +26,11 @@ public class ProjetActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("test", "un message");
+        Log.d("message = ", "lancement des projets");
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String defaultValue = getResources().getString(R.string.saved_token);
+        String token = sharedPref.getString(getString(R.string.saved_token), defaultValue);
+        Log.d("TOKEN = ", token);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
         this.projectsSummaryFragment = ProjectsSummaryFragment.newInstance();
