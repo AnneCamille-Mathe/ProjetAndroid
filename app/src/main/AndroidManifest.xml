@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Navigation.ComProjetActivity"/>
+        <activity android:name=".Navigation.ChoixMenus"/>
         <activity android:name=".Navigation.Connexion"/>
         <activity android:name=".Navigation.ComJuryActivity"/>
         <activity android:name=".Navigation.ComNotesActivity"/>
