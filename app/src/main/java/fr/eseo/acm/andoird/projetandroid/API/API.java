@@ -37,27 +37,27 @@ import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.objets.SSLUtil;
 
 public class API   extends AppCompatActivity {
-    static final String API_BASE_URL = "https://172.24.5.16/pfe/webservice.php?";
-    static final String API_KEY_QUERY = "q";
-    static final String API_LIPRJ = "LIPRJ";
-    static final String API_MYPRJ = "MYPRJ";
-    static final String API_LIJUR = "LIJUR";
-    static final String API_MYJUR = "MYJUR";
-    static final String API_JYINF = "JYINF";
-    static final String API_POSTR = "POSTR";
-    static final String API_NOTES = "NOTES";
-    static final String API_NEWNT = "NEWNT";
-    static final String API_PORTE = "PORTES";
-    static final String API_LOGON = "LOGON";
-    static final String API_USER = "user";
-    static final String API_PASS = "pass";
+    public static final String API_BASE_URL = "https://172.24.5.16/pfe/webservice.php?";
+    public static final String API_KEY_QUERY = "q";
+    public static final String API_LIPRJ = "LIPRJ";
+    public static final String API_MYPRJ = "MYPRJ";
+    public static final String API_LIJUR = "LIJUR";
+    public static final String API_MYJUR = "MYJUR";
+    public static final String API_JYINF = "JYINF";
+    public static final String API_POSTR = "POSTR";
+    public static final String API_NOTES = "NOTES";
+    public static final String API_NEWNT = "NEWNT";
+    public static final String API_PORTE = "PORTES";
+    public static final String API_LOGON = "LOGON";
+    public static final String API_USER = "user";
+    public static final String API_PASS = "pass";
 
 
     //FROM MOVIESEO
-    public URL buildApiUrl(String username, String password) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public URL buildApiUrl(String query, String username, String password) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
         this.handleSSLHandshake();
         try {
-            return new URL(Uri.parse(API_BASE_URL).buildUpon().appendQueryParameter(API_KEY_QUERY, API_LOGON).appendQueryParameter(API_USER, username).appendQueryParameter(API_PASS, password).build().toString());
+            return new URL(Uri.parse(API_BASE_URL).buildUpon().appendQueryParameter(API_KEY_QUERY, query).appendQueryParameter(API_USER, username).appendQueryParameter(API_PASS, password).build().toString());
         } catch (MalformedURLException mue) {
             mue.printStackTrace();
             return null;

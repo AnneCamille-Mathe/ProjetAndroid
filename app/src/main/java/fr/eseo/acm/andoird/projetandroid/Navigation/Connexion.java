@@ -44,7 +44,7 @@ public class Connexion extends API {
     public void login(View v) throws IOException, KeyStoreException, KeyManagementException, NoSuchAlgorithmException, CertificateException {
         EditText username = (EditText)findViewById(R.id.username);
         EditText password = (EditText)findViewById(R.id.password);
-        URL url = this.buildApiUrl(username.getText().toString(), password.getText().toString());
+        URL url = this.buildApiUrl(API.API_LOGON, username.getText().toString(), password.getText().toString());
         System.out.println(url.toString());
         System.out.println("answer: "+ this.getReplyFromHttpUrl(url));
         //Ajouter ici le menu_com
