@@ -2,29 +2,22 @@ package fr.eseo.acm.andoird.projetandroid.Navigation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManagerFactory;
-
 import fr.eseo.acm.andoird.projetandroid.R;
 import  fr.eseo.acm.andoird.projetandroid.API.API;
+import fr.eseo.acm.andoird.projetandroid.Roles.LancementComm;
 import fr.eseo.acm.andoird.projetandroid.servicesAPI.LOGONService;
 
 public class Connexion extends API {
@@ -55,10 +48,17 @@ public class Connexion extends API {
         LOGONService log = new LOGONService();
         String token = log.getToken(this.getReplyFromHttpUrl(url));
 
+        //On sauvegarde la valeur du token
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.saved_token), token);
+        editor.commit();
+
         //Ajouter ici le menu
         if(token != null){
             Intent intent = new Intent(this, ChoixMenus.class);
             startActivity(intent);
-        }
+       }
     }
 }

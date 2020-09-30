@@ -9,5 +9,11 @@
     <string name="password">Saisir le mot de passe</string>
     <string name="name_prompt">Nom utilisateur</string>
     <string name="pass_prompt">Mot de passe</string>
+    <string name="saved_token" />
+    <string name="dummy_movie_genre">movie</string>
+    <string name="dummy_movie_title">titre</string>
+    <string name="dummy_movie_year">year</string>
+    <string name="movie_synopsis_label">label</string>
+    <string name="dummy_movie_synopsis">synopsus</string>
 
 </resources>
