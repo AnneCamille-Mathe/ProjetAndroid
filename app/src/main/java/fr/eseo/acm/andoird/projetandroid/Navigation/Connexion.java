@@ -47,6 +47,6 @@ public class Connexion extends API {
         URL url = this.buildApiUrl(username.getText().toString(), password.getText().toString());
         System.out.println(url.toString());
         System.out.println("answer: "+ this.getReplyFromHttpUrl(url));
-        //Ajouter ici le menu
+        //Ajouter ici le menu_com
     }
 }

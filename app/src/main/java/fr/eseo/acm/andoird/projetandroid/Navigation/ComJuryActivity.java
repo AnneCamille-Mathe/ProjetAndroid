@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import fr.eseo.acm.andoird.projetandroid.R;
 
-public class JuryActivity  extends AppCompatActivity {
+public class ComJuryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jury);
+        setContentView(R.layout.activity_jury_com);
     }
 }

@@ -4,16 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-import fr.eseo.acm.andoird.projetandroid.Navigation.ComNotesActivity;
 import fr.eseo.acm.andoird.projetandroid.Navigation.Connexion;
-import fr.eseo.acm.andoird.projetandroid.Navigation.JuryActivity;
-import fr.eseo.acm.andoird.projetandroid.Navigation.ProjetActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -40,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
-        //R.menu.menu est l'id de notre menu
-        inflater.inflate(R.menu.menu, menu);
+        //R.menu.menu_com est l'id de notre menu_com
+        inflater.inflate(R.menu.menu_com, menu_com);
         return true;
     }
 
