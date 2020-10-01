@@ -44,8 +44,8 @@ public class ProjectsSummaryListViewAdapter extends RecyclerView.Adapter<Project
 
         public MovieSummaryListViewHolder(@NonNull View itemView){
             super(itemView);
-            this.movieTitle = itemView.findViewById(R.id.summary_movie_title);
-            this.movieGenre = itemView.findViewById(R.id.summary_movie_genre);
+            this.movieTitle = itemView.findViewById(R.id.summary_project_title);
+            this.movieGenre = itemView.findViewById(R.id.summary_project_students);
 
         }
     }
