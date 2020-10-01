@@ -11,6 +11,12 @@
     <string name="pass_prompt">Mot de passe</string>
 
     <string name="saved_token" />
+    <string name="project_students">Elèves</string>
+    <string name="project_title">Titre</string>
+    <string name="project_supervisor">Superviseur</string>
+    <string name="project_confidentiality">Confidentialité</string>
+    <string name="project_description">Description</string>
+
     <string name="dummy_movie_genre">movie</string>
     <string name="dummy_movie_title">titre</string>
     <string name="dummy_movie_year">year</string>

@@ -22,12 +22,10 @@ public class ProjectDetailsFragment  extends Fragment{
     private RecyclerView roles;
     private Button reviewsButton;
     private TextView title;
-    private TextView country;
-    private TextView year;
-    private TextView genre;
-    private TextView director;
-    private TextView synopsis;
-    private TextView score;
+    private TextView students;
+    private TextView supervisor;
+    private TextView confidentiality;
+    private TextView description;
     private ImageView poster;
 
     private int movieId;
@@ -53,22 +51,13 @@ public class ProjectDetailsFragment  extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         if(getArguments()!=null){
             this.movieId = getArguments().getInt(ComProjetActivity.MOVIE_ID,0);
-            this.reviewsButton = view.findViewById(R.id.movie_details_review_button);
-            this.roles = view.findViewById(R.id.movie_details_roles);
-            this.roles.setHasFixedSize(true);
-            roleAdapter = new ProjectRoleViewAdapter();
-            this.roles.setAdapter(roleAdapter);
-            LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-            llm.setOrientation(LinearLayoutManager.VERTICAL);
-            this.roles.setLayoutManager(llm);
-            this.title = view.findViewById(R.id.movie_details_title);
-            this.country = view.findViewById(R.id.movie_details_country);
-            this.year = view.findViewById(R.id.movie_details_year);
-            this.director = view.findViewById(R.id.movie_details_director);
-            this.synopsis = view.findViewById(R.id.movie_details_synopsis);
-            this.score = view.findViewById(R.id.movie_details_average_score);
-            this.genre = view.findViewById(R.id.movie_details_Genres);
-            this.poster = view.findViewById(R.id.movie_details_poster);
+
+            this.title = view.findViewById(R.id.title);
+            this.students = view.findViewById(R.id.students);
+            this.supervisor = view.findViewById(R.id.supervisor);
+            this.confidentiality = view.findViewById(R.id.confidentiality);
+            this.description = view.findViewById(R.id.description);
+            this.poster = view.findViewById(R.id.poster);
 
         }
     }
