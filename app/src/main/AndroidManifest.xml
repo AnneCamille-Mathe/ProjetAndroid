@@ -16,6 +16,7 @@
         <activity android:name=".Navigation.Connexion"/>
         <activity android:name=".Navigation.ComJuryActivity"/>
         <activity android:name=".Navigation.ComNotesActivity"/>
+        <activity android:name=".Navigation.VisitorProjetActivity"/>
         <activity android:name=".API.API"
             tools:ignore="Instantiatable" />
         <activity android:name=".API.Enum"
