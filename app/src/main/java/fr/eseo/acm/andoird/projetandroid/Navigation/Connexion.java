@@ -49,7 +49,6 @@ public class Connexion extends API {
         String token = log.getToken(this.getReplyFromHttpUrl(url));
 
         //On sauvegarde la valeur du token
-
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(getString(R.string.saved_token), token);
