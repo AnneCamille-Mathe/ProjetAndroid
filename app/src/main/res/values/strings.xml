@@ -10,9 +10,6 @@
     <string name="name_prompt">Nom utilisateur</string>
     <string name="pass_prompt">Mot de passe</string>
 
-    <string name="saved_token">saved_token</string>
-    <string name="saved_username">saved_username</string>
-
     <string name="project_students">Elèves</string>
     <string name="project_title">Titre</string>
     <string name="project_supervisor">Superviseur</string>

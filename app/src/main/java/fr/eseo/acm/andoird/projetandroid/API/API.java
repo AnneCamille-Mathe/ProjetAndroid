@@ -21,6 +21,7 @@ public class API   extends AppCompatActivity {
     public static final String API_BASE_URL = "https://172.24.5.16/pfe/webservice.php?";
     public static final String API_KEY_QUERY = "q";
     public static final String API_LOGON = "LOGON";
+    public static final String API_PROJECTS = "LIPRJ";
     public static final String API_USER = "user";
     public static final String API_PASS = "pass";
     public static final String API_TOKEN = "token";
