@@ -1,8 +1,6 @@
 
 package fr.eseo.acm.andoird.projetandroid.Navigation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,7 +38,8 @@ public class Connexion extends API {
     public void login(View v) throws IOException, KeyStoreException, KeyManagementException, NoSuchAlgorithmException, CertificateException {
         EditText username = (EditText)findViewById(R.id.username);
         EditText password = (EditText)findViewById(R.id.password);
-        URL url = this.buildApiUrl(API.API_LOGON, username.getText().toString(), password.getText().toString());
+        String[] params = new String[] {API.API_USER, username.getText().toString(), API.API_PASS, password.getText().toString()};
+        URL url = this.buildRequest(API.API_LOGON, params);
         System.out.println(url.toString());
         //System.out.println("answer: "+ this.getReplyFromHttpUrl(url) + "fin");
 

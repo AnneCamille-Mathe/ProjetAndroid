@@ -23,13 +23,18 @@ public class API   extends AppCompatActivity {
     public static final String API_LOGON = "LOGON";
     public static final String API_USER = "user";
     public static final String API_PASS = "pass";
+    public static final String API_TOKEN = "token";
 
 
     //FROM MOVIESEO
-    public URL buildApiUrl(String query, String username, String password) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public URL buildRequest(String query, String[] parameters) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
         this.handleSSLHandshake();
         try {
-            return new URL(Uri.parse(API_BASE_URL).buildUpon().appendQueryParameter(API_KEY_QUERY, query).appendQueryParameter(API_USER, username).appendQueryParameter(API_PASS, password).build().toString());
+            Uri.Builder url = Uri.parse(API_BASE_URL).buildUpon().appendQueryParameter(API_KEY_QUERY, query);
+            for(int i=0; i<parameters.length; i = i+2){
+                url.appendQueryParameter(parameters[i], parameters[i+1]);
+            }
+            return new URL(url.build().toString());
         } catch (MalformedURLException mue) {
             mue.printStackTrace();
             return null;
