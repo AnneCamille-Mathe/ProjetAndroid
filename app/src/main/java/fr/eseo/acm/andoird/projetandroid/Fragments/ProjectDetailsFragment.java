@@ -8,14 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import fr.eseo.acm.andoird.projetandroid.Navigation.ComProjetActivity;
+import fr.eseo.acm.andoird.projetandroid.Navigation.AllProjectsActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.View.ProjectRoleViewAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ProjectDetailsFragment  extends Fragment{
@@ -37,7 +36,7 @@ public class ProjectDetailsFragment  extends Fragment{
     public static ProjectDetailsFragment newInstance(int movieId){
         ProjectDetailsFragment fragment = new ProjectDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(ComProjetActivity.MOVIE_ID, movieId);
+        bundle.putInt(AllProjectsActivity.MOVIE_ID, movieId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -50,7 +49,7 @@ public class ProjectDetailsFragment  extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         if(getArguments()!=null){
-            this.movieId = getArguments().getInt(ComProjetActivity.MOVIE_ID,0);
+            this.movieId = getArguments().getInt(AllProjectsActivity.MOVIE_ID,0);
 
             this.title = view.findViewById(R.id.title);
             this.students = view.findViewById(R.id.students);

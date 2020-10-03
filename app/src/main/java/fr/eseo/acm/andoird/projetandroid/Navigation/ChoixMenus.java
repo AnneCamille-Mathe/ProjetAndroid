@@ -36,7 +36,7 @@ public class ChoixMenus extends AppCompatActivity {
     }
 
     public void openActivityProject() {
-        Intent intent = new Intent(this, ComProjetActivity.class);
+        Intent intent = new Intent(this, AllProjectsActivity.class);
         startActivity(intent);
     }
 

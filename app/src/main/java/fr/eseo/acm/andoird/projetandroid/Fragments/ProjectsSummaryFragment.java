@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import fr.eseo.acm.andoird.projetandroid.Navigation.ComProjetActivity;
+import fr.eseo.acm.andoird.projetandroid.Navigation.AllProjectsActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.vues.ProjectsSummaryListViewAdapter;
 
@@ -42,7 +42,7 @@ public class ProjectsSummaryFragment extends Fragment {
     }
 
     public void selectMovie(int movieId){
-        ((ComProjetActivity)getActivity()).selectMovie(movieId);
+        ((AllProjectsActivity)getActivity()).selectMovie(movieId);
     }
 
 

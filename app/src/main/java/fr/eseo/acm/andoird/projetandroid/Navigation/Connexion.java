@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,9 +49,10 @@ public class Connexion extends API {
         String token = log.getToken(this.getReplyFromHttpUrl(url));
 
         //On sauvegarde la valeur du token
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(getString(R.string.saved_token), token);
+        editor.putString("saved_token", token);
+        editor.putString("saved_username", username.getText().toString());
         editor.commit();
 
         //Ajouter ici le menu
