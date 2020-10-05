@@ -22,6 +22,7 @@ public class API   extends AppCompatActivity {
     public static final String API_KEY_QUERY = "q";
     public static final String API_LOGON = "LOGON";
     public static final String API_PROJECTS = "LIPRJ";
+    public static final String API_NOTES = "NOTES";
     public static final String API_MYINF = "MYINF";
     public static final String API_USER = "user";
     public static final String API_PASS = "pass";

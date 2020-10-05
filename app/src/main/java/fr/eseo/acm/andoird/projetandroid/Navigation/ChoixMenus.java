@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import fr.eseo.acm.andoird.projetandroid.API.API;
+import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectsFragment;
 import fr.eseo.acm.andoird.projetandroid.R;
 
@@ -61,7 +62,19 @@ public class ChoixMenus extends API {
                     openActivityJury();
                     break;
                 case R.id.marks:
-                    openActivityNotesCom();
+                    try {
+                        openActivityNotesCom();
+                    } catch (CertificateException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    } catch (KeyStoreException e) {
+                        e.printStackTrace();
+                    } catch (KeyManagementException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
         } else if (role == 1) {
@@ -85,10 +98,12 @@ public class ChoixMenus extends API {
     }
 
     public void openActivityProject() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
-        //TEST
-        //Intent intent = new Intent(this, AllProjectsActivity.class);
         Intent intent = new Intent(this, ListProjectsFragment.class);
         intent.putExtra("json", this.getProjects());
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("projets", this.getProjects());
+        editor.commit();
         startActivity(intent);
     }
 
@@ -97,7 +112,7 @@ public class ChoixMenus extends API {
         startActivity(intent);
     }
 
-    public void openActivityNotesCom() {
+    public void openActivityNotesCom() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
         Intent intent = new Intent(this, ComNotesActivity.class);
         startActivity(intent);
     }
@@ -121,5 +136,4 @@ public class ChoixMenus extends API {
         System.out.println(url.toString());
        return this.getReplyFromHttpUrl(url);
     }
-
 }

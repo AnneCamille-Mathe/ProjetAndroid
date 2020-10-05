@@ -19,6 +19,7 @@
         <activity android:name=".Navigation.JuryMineActivity"/>
         <activity android:name=".Navigation.JuryPostersActivity"/>
         <activity android:name=".Fragments.ListProjectsFragment"/>
+        <activity android:name=".Fragments.DetailsActivity"/>
         <activity android:name=".API.API"
             tools:ignore="Instantiatable" />
         <activity android:name=".API.Enum"

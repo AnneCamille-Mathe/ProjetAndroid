@@ -16,21 +16,6 @@
     <string name="project_confidentiality">Confidentialité</string>
     <string name="project_description">Description</string>
 
-    <string name="dummy_movie_genre">movie</string>
-    <string name="dummy_movie_title">titre</string>
-    <string name="dummy_movie_year">year</string>
-    <string name="movie_synopsis_label">label</string>
-    <string name="dummy_movie_synopsis">synopsus</string>
 
-   <string name="dummy_movie_genres">Comedy, Period Drama, Fantasy</string>
-    <string name="movie_director_label">Director</string>
-    <string name="dummy_movie_director">GILLIAM, Terry</string>
-    <string name="movie_reviews_detail">Details</string>
-    <string name="movie_roles_label">Roles</string>
-    <string name="dummy_movie_country">United Kingdom</string>
-    <string name="movie_poster_description">movie poster</string>
-    <string name="dummy_movie_score">Rating 5 stars (from 1 review)</string>
-    <string name="dummy_role_artist">Michael Palin</string>
-    <string name="dummy_role_name">Patsy</string>
-    
+
 </resources>
