@@ -1,73 +1,68 @@
 package fr.eseo.acm.andoird.projetandroid.Navigation;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import fr.eseo.acm.andoird.projetandroid.API.API;
+import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectsFragment;
 import fr.eseo.acm.andoird.projetandroid.R;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class ChoixMenus extends AppCompatActivity {
+import java.io.IOException;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 
-    private int role;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        role = intent.getIntExtra("role", 0);
-        System.out.println("ROLE "+role);
-    }
-
+public class ChoixMenus extends API {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
-        if(role == 1){
-            //R.menu.menu est l'id de notre menu
-            inflater.inflate(R.menu.menu_jury, menu);
-        } else if (role == 4) {
-            //R.menu.menu est l'id de notre menu
-            inflater.inflate(R.menu.menu_com, menu);
-        }
+        //R.menu.menu est l'id de notre menu
+        inflater.inflate(R.menu.menu_com, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(role == 4){
-            switch (item.getItemId()) {
-                case R.id.projects:
-                    openActivityProject();
-                    break;
-                case R.id.jury:
-                    openActivityJury();
-                    break;
-                case R.id.marks:
-                    openActivityNotesCom();
-                    break;
 
-            }
-        } else if (role == 1) {
-            switch (item.getItemId()) {
-                case R.id.projects:
+        switch (item.getItemId()) {
+            case R.id.item1:
+                try {
                     openActivityProject();
-                    break;
-                case R.id.posters:
-                    openActivityJuryPosters();
-                    break;
-                case R.id.my_jury:
-                    openActivityJuryMine();
-                    break;
-            }
+                } catch (CertificateException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (KeyStoreException e) {
+                    e.printStackTrace();
+                } catch (KeyManagementException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.item2:
+                openActivityJury();
+                break;
+            case R.id.item3:
+                openActivityNotesCom();
+                break;
+
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    public void openActivityProject() {
-        Intent intent = new Intent(this, AllProjectsActivity.class);
+    public void openActivityProject() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        //TEST
+        //Intent intent = new Intent(this, AllProjectsActivity.class);
+        Intent intent = new Intent(this, ListProjectsFragment.class);
+        intent.putExtra("json", this.getProjects());
         startActivity(intent);
     }
 
@@ -81,14 +76,14 @@ public class ChoixMenus extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openActivityJuryMine() {
-        Intent intent = new Intent(this, JuryMineActivity.class);
-        startActivity(intent);
-    }
-
-    public void openActivityJuryPosters() {
-        Intent intent = new Intent(this, JuryPostersActivity.class);
-        startActivity(intent);
+    public String getProjects() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String username = sharedPref.getString("saved_username", "le login n'est pas trouvé");
+        String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");
+        String[] params = new String[] {API.API_USER, username, API.API_TOKEN, token};
+        URL url = this.buildRequest(API.API_PROJECTS, params);
+        System.out.println(url.toString());
+       return this.getReplyFromHttpUrl(url);
     }
 
 }
