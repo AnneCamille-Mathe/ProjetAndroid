@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import fr.eseo.acm.andoird.projetandroid.API.API;
+import fr.eseo.acm.andoird.projetandroid.Fragments.ListJuryFragment;
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectsFragment;
 import fr.eseo.acm.andoird.projetandroid.R;
 
@@ -62,7 +63,7 @@ public class ChoixMenus extends API {
                     }
                     break;
                 case R.id.jury:
-                    openActivityJury();
+                    openActivityJuryCom();
                     break;
                 case R.id.marks:
                     openActivityNotesCom();
@@ -81,7 +82,11 @@ public class ChoixMenus extends API {
                     openActivityJuryPosters();
                     break;
                 case R.id.my_jury:
-                    openActivityJuryMine();
+                    try {
+                        openActivityJuryMine();
+                    } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
         }
@@ -96,7 +101,7 @@ public class ChoixMenus extends API {
         startActivity(intent);
     }
 
-    public void openActivityJury() {
+    public void openActivityJuryCom() {
         Intent intent = new Intent(this, ComJuryActivity.class);
         startActivity(intent);
     }
@@ -106,8 +111,9 @@ public class ChoixMenus extends API {
         startActivity(intent);
     }
 
-    public void openActivityJuryMine() {
-        Intent intent = new Intent(this, JuryMineActivity.class);
+    public void openActivityJuryMine() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+        Intent intent = new Intent(this, ListJuryFragment.class);
+        intent.putExtra("json", this.getMyJury());
         startActivity(intent);
     }
 
@@ -124,6 +130,16 @@ public class ChoixMenus extends API {
         URL url = this.buildRequest(API.API_PROJECTS, params);
         System.out.println(url.toString());
        return this.getReplyFromHttpUrl(url);
+    }
+
+    public String getMyJury() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String username = sharedPref.getString("saved_username", "le login n'est pas trouvé");
+        String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");
+        String[] params = new String[] {API.API_USER, username, API.API_TOKEN, token};
+        URL url = this.buildRequest(API.API_MYJURY, params);
+        System.out.println(url.toString());
+        return this.getReplyFromHttpUrl(url);
     }
 
 }
