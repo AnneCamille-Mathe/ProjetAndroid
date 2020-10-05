@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/projects" android:title="Liste des projets"></item>
+    <item android:id="@+id/posters" android:title="Les affiches"></item>
+    <item android:id="@+id/my_jury" android:title="Mon espace jury"></item>
+</menu>
