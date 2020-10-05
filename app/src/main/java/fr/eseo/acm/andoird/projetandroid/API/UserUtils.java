@@ -30,16 +30,12 @@ public class UserUtils extends AppCompatActivity {
 
     public static List<Jury> parseForJury(JSONObject jsonJuryLists) throws JSONException {
         List<Jury> juryList = new ArrayList<Jury>();
-        String title = "";
         JSONArray jsonJuryList = jsonJuryLists.getJSONArray("juries");
         for (int i = 0; i < jsonJuryList.length(); i++) {
             JSONObject jury = jsonJuryList.getJSONObject(i);
             String date = jury.getString("date");
-            JSONObject juryInfo = jury.getJSONObject("info");
-            JSONArray jsonProject = juryInfo.getJSONArray("projects");
-            title = jsonProject.getString(0).split("\"")[5];
-            System.out.println("TITLE " + title);
-            juryList.add(new Jury(date, title));
+            int id = jury.getInt("idJury");
+            juryList.add(new Jury(date, id));
         }
         return juryList;
     }

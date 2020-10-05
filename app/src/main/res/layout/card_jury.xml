@@ -16,7 +16,7 @@
             android:textAlignment="textStart"
             android:text="@string/jury_project_title"
             android:layout_marginEnd="92dp"
-            android:id="@+id/jury_project_title"/>
+            android:id="@+id/jury_id"/>
 
         <TextView android:layout_marginBottom="16dp"
             android:layout_height="21dp"

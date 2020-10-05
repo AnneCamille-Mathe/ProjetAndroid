@@ -16,9 +16,9 @@ public class Jury {
         this.projects = projets;
     }
 
-    public Jury(String date, String title){
+    public Jury(String date, int id){
         this.date = date;
-        this.projects = new Project[] {new Project(title,null)};
+        this.idJury = id;
     }
 
     public int getIdJury() {
