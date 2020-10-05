@@ -11,13 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Navigation.AllProjectsActivity"/>
         <activity android:name=".Navigation.ChoixMenus"/>
         <activity android:name=".Navigation.Connexion"/>
         <activity android:name=".Navigation.ComJuryActivity"/>
         <activity android:name=".Navigation.ComNotesActivity"/>
-        <activity android:name=".Fragments.ProjectDetailsActivity"/>
         <activity android:name=".Navigation.VisitorProjetActivity"/>
+        <activity android:name=".Fragments.ListProjectsFragment"/>
         <activity android:name=".API.API"
             tools:ignore="Instantiatable" />
         <activity android:name=".API.Enum"
