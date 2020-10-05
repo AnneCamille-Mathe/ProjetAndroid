@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="24sp"
-        android:text="Bienvenue dans l'espace comm! \n\nChoisissez via le menu en haut à droite ce que vous souhaitez faire"
+        android:text="Bienvenue dans l'espace jury! \n\nChoisissez via le menu en haut à droite ce que vous souhaitez faire"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
