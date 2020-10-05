@@ -55,10 +55,25 @@ public class Connexion extends API {
         editor.putString("saved_username", username.getText().toString());
         editor.commit();
 
+        int role = this.getRole(username.getText().toString());
+
         //Ajouter ici le menu
         if(token != null){
             Intent intent = new Intent(this, ChoixMenus.class);
+            intent.putExtra("role", role);
             startActivity(intent);
         }
+    }
+
+    public int getRole(String username) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
+        String[] params = new String[] {API.API_USER, username};
+        URL url = this.buildRequest(API.API_MYINF, params);
+        String reply = this.getReplyFromHttpUrl(url);
+
+        String role = "";
+        String[] details = reply.split("\"idRole\": ");
+        String[] detail = details[1].split(",");
+        role = detail[0];
+        return Integer.parseInt(role);
     }
 }
