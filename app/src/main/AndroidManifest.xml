@@ -19,6 +19,7 @@
         <activity android:name=".Navigation.JuryPostersActivity"/>
         <activity android:name=".Navigation.JuryDetailsActivity"/>
         <activity android:name=".Fragments.ListProjectsFragment"/>
+        <activity android:name=".Fragments.DetailsActivity"/>
         <activity android:name=".Fragments.ListJuryFragment"/>
         <activity android:name=".API.API"
             tools:ignore="Instantiatable" />

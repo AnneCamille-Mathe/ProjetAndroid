@@ -22,7 +22,7 @@ public class ListProjectsFragment extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ListProjectsAdapter mAdapter;
     private List<Project> mProjectList;
-
+    ListProjectsAdapter.ProjectViewHolder holder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +49,7 @@ public class ListProjectsFragment extends AppCompatActivity {
         mAdapter = new ListProjectsAdapter(mProjectList,this);
         mRecyclerView.setAdapter(mAdapter);
     }
+
 
 
 }
