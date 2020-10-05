@@ -9,11 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import fr.eseo.acm.andoird.projetandroid.API.API;
-<<<<<<< HEAD
 import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
-=======
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListJuryFragment;
->>>>>>> dev
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectsFragment;
 import fr.eseo.acm.andoird.projetandroid.R;
 
