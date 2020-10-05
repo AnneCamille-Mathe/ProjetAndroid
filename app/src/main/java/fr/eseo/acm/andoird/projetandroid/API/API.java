@@ -27,6 +27,7 @@ public class API   extends AppCompatActivity {
     public static final String API_USER = "user";
     public static final String API_PASS = "pass";
     public static final String API_TOKEN = "token";
+    public static final String API_MYJURY = "MYJUR";
 
 
     //FROM MOVIESEO

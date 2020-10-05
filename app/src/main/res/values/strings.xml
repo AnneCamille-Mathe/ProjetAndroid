@@ -17,5 +17,8 @@
     <string name="project_description">Description</string>
 
 
+    <string name="jury_project_title">Title</string>
+    <string name="jury_date">Date</string>
+    
 
 </resources>
