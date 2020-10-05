@@ -43,7 +43,7 @@ public class JuryDetailsActivity extends AppCompatActivity {
         }
         if(jury != null){
             try {
-                mProjectList = UserUtils.parseProjectsForJury(jury);
+                mProjectList = UserUtils.parseProjectsForJury(jury, getApplicationContext());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

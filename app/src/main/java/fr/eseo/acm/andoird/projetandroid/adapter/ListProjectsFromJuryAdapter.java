@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import fr.eseo.acm.andoird.projetandroid.Fragments.DetailsActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
@@ -36,9 +37,17 @@ public class ListProjectsFromJuryAdapter extends RecyclerView.Adapter<ListProjec
 
     @Override
     public void onBindViewHolder(ListProjectsFromJuryAdapter.JuryViewHolder holder, final int position) {
-        holder.projectTitle.setText(projectItemList.get(position).getTitle().toString());
+        holder.projectTitle.setText(projectItemList.get(position).getTitle());
         holder.projectSupervisor.setText("Superviseur : "+projectItemList.get(position).getSuperviseur());
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailsActivity.class);
+                String emplacement = position + "";
+                intent.putExtra("position", emplacement);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

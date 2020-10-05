@@ -1,7 +1,9 @@
 package fr.eseo.acm.andoird.projetandroid.Fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +39,11 @@ public class DetailsActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+        if(mProjectList==null){
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String array = sharedPref.getString("projectsFromJury", "Projets non trouvés !");
+            mProjectList = UserUtils.parseForProjectsFromJury(array);
         }
 
         String titre = mProjectList.get(Integer.parseInt(position)).getTitle();
