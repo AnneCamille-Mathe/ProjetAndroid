@@ -18,19 +18,6 @@ import fr.eseo.acm.andoird.projetandroid.room.Jury;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
 public class UserUtils extends AppCompatActivity {
-    public static List<Project> parseForProjects(JSONObject jsonResults) throws JSONException {
-        List<Project> projectsList = new ArrayList<Project>();
-        String supervisor = "";
-        JSONArray jsonProjectsList = jsonResults.getJSONArray("projects");
-        for (int i = 0; i < jsonProjectsList.length(); i++) {
-            JSONObject project = jsonProjectsList.getJSONObject(i);
-            String title = project.getString("title");
-            JSONObject jsonSupervisor = project.getJSONObject("supervisor");
-            supervisor = jsonSupervisor.getString("forename") + " " + jsonSupervisor.getString("surname");
-            projectsList.add(new Project(title, supervisor));
-        }
-        return projectsList;
-    }
 
     public static List<Project> parseForProjectsWithDescrip(JSONObject jsonResults) throws JSONException {
         List<Project> projectsList = new ArrayList<Project>();
@@ -38,11 +25,22 @@ public class UserUtils extends AppCompatActivity {
         JSONArray jsonProjectsList = jsonResults.getJSONArray("projects");
         for (int i = 0; i < jsonProjectsList.length(); i++) {
             JSONObject project = jsonProjectsList.getJSONObject(i);
+            System.out.println(project);
+            String[] students = project.getString("students").split("\"");
+            ArrayList<String> members = new ArrayList<>();
+            for(int j=5; j<students.length; j=j+10){
+                members.add(students[j]+" "+students[j+4]);
+            }
             String title = project.getString("title");
+            int confidentiality = project.getInt("confid");
             String descript = project.getString("descrip");
+            boolean poster = project.getBoolean("poster");
+            int id = project.getInt("projectId");
             JSONObject jsonSupervisor = project.getJSONObject("supervisor");
             supervisor = jsonSupervisor.getString("forename") + " " + jsonSupervisor.getString("surname");
-            projectsList.add(new Project(title, supervisor, descript));
+            Project projet = new Project(id, title, descript, supervisor, poster, confidentiality);
+            projet.setMembers(members);
+            projectsList.add(projet);
         }
         return projectsList;
     }
