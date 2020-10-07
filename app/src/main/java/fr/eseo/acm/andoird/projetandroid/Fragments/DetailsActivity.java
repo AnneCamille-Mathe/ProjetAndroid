@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
@@ -51,18 +52,29 @@ public class DetailsActivity extends AppCompatActivity {
         String description = mProjectList.get(Integer.parseInt(position)).getDescription();
         String superviseur =  mProjectList.get(Integer.parseInt(position)).getSuperviseur();
 
+        ArrayList<String> members = mProjectList.get(Integer.parseInt(position)).getMembers();
+        String m = "";
+        for(int i=0; i<members.size(); i++){
+            if(i==0){
+                m += members.get(i);
+            } else{
+                m += ", "+members.get(i);
+            }
+        }
+
         TextView titreView = findViewById(R.id.title);
         titreView.setText(titre);
 
         TextView confidentialiteView = findViewById(R.id.confidentiality);
-        confidentialiteView.setText(confidentialite + "");
+        confidentialiteView.setText("Confidentialité : "+confidentialite);
 
         TextView descriptionView = findViewById(R.id.description);
         descriptionView.setText(description);
 
         TextView superviseurView = findViewById(R.id.supervisor);
-        superviseurView.setText(superviseur);
+        superviseurView.setText("Superviseur : "+superviseur);
 
-
+        TextView membersView = findViewById(R.id.students);
+        membersView.setText("Elèves : "+m);
     }
 }

@@ -53,13 +53,19 @@ public class UserUtils extends AppCompatActivity {
         for(int i=0; i<list.length; i++){
             System.out.println(list[i]);
             String[] projectElements = list[i].split("\"");
+            ArrayList<String> members = new ArrayList<>();
+            for(int j=31; j<projectElements.length; j=j+10){
+                members.add(projectElements[j]+" "+projectElements[j+4]);
+            }
             int id = Integer.parseInt(projectElements[2].split(",")[0].substring(1));
             String title = projectElements[5];
             String supervisor = projectElements[19]+" "+projectElements[23];
             String description = projectElements[9];
             int confidentiality = Integer.parseInt(projectElements[12].substring(1,2));
             boolean poster = Boolean.parseBoolean(projectElements[14].split(",")[0].substring(1));
-            projectsList.add(new Project(id, title, description, supervisor, poster, confidentiality));
+            Project projet = new Project(id, title, description, supervisor, poster, confidentiality);
+            projet.setMembers(members);
+            projectsList.add(projet);
         }
         return projectsList;
     }
