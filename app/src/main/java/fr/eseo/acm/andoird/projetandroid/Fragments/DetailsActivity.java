@@ -35,7 +35,7 @@ public class DetailsActivity extends AppCompatActivity {
         if(getIntent().hasExtra("json")) {
             try {
                 JSONObject jsonProjectLists = new JSONObject(getIntent().getStringExtra("json"));
-                mProjectList = UserUtils.parseForProjects(jsonProjectLists);
+                mProjectList = UserUtils.parseForProjectsWithDescrip(jsonProjectLists);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -23,6 +23,12 @@ public class Project {
         this.superviseur = superviseur;
     }
 
+    public Project(String titre, String superviseur, String description) {
+        this.title = titre;
+        this.superviseur = superviseur;
+        this.description = description;
+    }
+
     public int getIdProject() {
         return idProject;
     }

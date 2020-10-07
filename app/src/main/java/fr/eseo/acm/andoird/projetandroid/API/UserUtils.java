@@ -27,8 +27,22 @@ public class UserUtils extends AppCompatActivity {
             String title = project.getString("title");
             JSONObject jsonSupervisor = project.getJSONObject("supervisor");
             supervisor = jsonSupervisor.getString("forename") + " " + jsonSupervisor.getString("surname");
-            System.out.println(supervisor);
             projectsList.add(new Project(title, supervisor));
+        }
+        return projectsList;
+    }
+
+    public static List<Project> parseForProjectsWithDescrip(JSONObject jsonResults) throws JSONException {
+        List<Project> projectsList = new ArrayList<Project>();
+        String supervisor = "";
+        JSONArray jsonProjectsList = jsonResults.getJSONArray("projects");
+        for (int i = 0; i < jsonProjectsList.length(); i++) {
+            JSONObject project = jsonProjectsList.getJSONObject(i);
+            String title = project.getString("title");
+            String descript = project.getString("descrip");
+            JSONObject jsonSupervisor = project.getJSONObject("supervisor");
+            supervisor = jsonSupervisor.getString("forename") + " " + jsonSupervisor.getString("surname");
+            projectsList.add(new Project(title, supervisor, descript));
         }
         return projectsList;
     }
