@@ -47,6 +47,20 @@ public class UserUtils extends AppCompatActivity {
         return projectsList;
     }
 
+    public static List<Project> parseForProjectsForPorte(JSONObject jsonResults) throws JSONException {
+        List<Project> projectsList = new ArrayList<Project>();
+        JSONArray jsonProjectsList = jsonResults.getJSONArray("projects");
+        for (int i = 0; i < jsonProjectsList.length(); i++) {
+            JSONObject project = jsonProjectsList.getJSONObject(i);
+            int idProject = project.getInt("idProject");
+            String title = project.getString("title");
+            String description = project.getString("description");
+            String poster = project.getString("poster");
+            projectsList.add(new Project(idProject, title, description, poster));
+        }
+        return projectsList;
+    }
+
     public static List<Project> parseForProjectsFromJury(String array){
         List<Project> projectsList = new ArrayList<Project>();
         String[] list = array.split(", ");

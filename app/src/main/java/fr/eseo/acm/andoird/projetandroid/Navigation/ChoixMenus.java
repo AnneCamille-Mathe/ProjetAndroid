@@ -64,7 +64,19 @@ public class ChoixMenus extends API {
                     }
                     break;
                 case R.id.jury:
-                    openActivityJuryCom();
+                    try {
+                        openActivityJuryCom();
+                    } catch (CertificateException e) {
+                        e.printStackTrace();
+                    } catch (NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    } catch (KeyStoreException e) {
+                        e.printStackTrace();
+                    } catch (KeyManagementException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case R.id.marks:
                     try {
@@ -116,7 +128,7 @@ public class ChoixMenus extends API {
         startActivity(intent);
     }
 
-    public void openActivityJuryCom() {
+    public void openActivityJuryCom() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
         Intent intent = new Intent(this, ComJuryActivity.class);
         startActivity(intent);
     }
@@ -161,5 +173,4 @@ public class ChoixMenus extends API {
         System.out.println(url.toString());
         return this.getReplyFromHttpUrl(url);
     }
-
 }

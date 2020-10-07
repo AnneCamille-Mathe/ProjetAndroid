@@ -22,6 +22,7 @@ public class DetailsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Project projectList;
     private  String position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
