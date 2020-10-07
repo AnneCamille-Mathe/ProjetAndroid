@@ -34,6 +34,12 @@ public class Connexion extends API {
                 }
             }
         });
+        Button visitor = (Button) findViewById(R.id.visitor);
+        visitor.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Connexion.this.loginAsVisitor();
+            }
+        });
     }
     public void login(View v) throws IOException, KeyStoreException, KeyManagementException, NoSuchAlgorithmException, CertificateException {
         EditText username = (EditText)findViewById(R.id.username);
@@ -60,6 +66,12 @@ public class Connexion extends API {
             intent.putExtra("role", role);
             startActivity(intent);
         }
+    }
+
+    public void loginAsVisitor(){
+        Intent intent = new Intent(this, ChoixMenus.class);
+        intent.putExtra("role", 0);
+        startActivity(intent);
     }
 
     public int getRole(String username) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {

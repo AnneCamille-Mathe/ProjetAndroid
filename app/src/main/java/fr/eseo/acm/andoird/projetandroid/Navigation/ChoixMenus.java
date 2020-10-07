@@ -28,11 +28,13 @@ public class ChoixMenus extends API {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        role = intent.getIntExtra("role", 1);
+        role = intent.getIntExtra("role", 0);
         if(role == 1){
             setContentView(R.layout.activity_jury);
         } else if (role == 4) {
             setContentView(R.layout.activity_com);
+        } else{
+            setContentView(R.layout.activity_visitor);
         }
     }
 
