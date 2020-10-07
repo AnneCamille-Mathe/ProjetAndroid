@@ -1,5 +1,7 @@
 package fr.eseo.acm.andoird.projetandroid.room;
 
+import java.util.ArrayList;
+
 public class Project {
 
     private int idProject;
@@ -9,6 +11,7 @@ public class Project {
     private String posters;
     private boolean poster;
     private int confidentiality;
+    private ArrayList<String> members;
 
     public Project(int idProject, String titre, String description, String superviseur, boolean poster, int confidentiality) {
         this.idProject = idProject;
@@ -84,6 +87,10 @@ public class Project {
     public void setConfidentiality(int confidentiality) {
         this.confidentiality = confidentiality;
     }
+
+    public ArrayList<String> getMembers() { return this.members; }
+
+    public void setMembers(ArrayList<String> members){ this.members = members; }
 
     @Override
     public String toString()  {

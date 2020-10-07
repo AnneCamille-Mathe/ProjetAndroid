@@ -1,7 +1,5 @@
 package fr.eseo.acm.andoird.projetandroid.room;
 
-import java.util.Date;
-
 public class Jury {
 
     private int idJury;

@@ -1,7 +1,6 @@
 
 package fr.eseo.acm.andoird.projetandroid.Navigation;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,8 +40,6 @@ public class Connexion extends API {
         EditText password = (EditText)findViewById(R.id.password);
         String[] params = new String[] {API.API_USER, username.getText().toString(), API.API_PASS, password.getText().toString()};
         URL url = this.buildRequest(API.API_LOGON, params);
-        System.out.println(url.toString());
-        //System.out.println("answer: "+ this.getReplyFromHttpUrl(url) + "fin");
 
         //Récupérer le token
         LOGONService log = new LOGONService();
