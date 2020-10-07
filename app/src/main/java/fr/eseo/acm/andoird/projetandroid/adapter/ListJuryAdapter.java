@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import fr.eseo.acm.andoird.projetandroid.Navigation.JuryDetailsActivity;
@@ -38,16 +40,15 @@ public class ListJuryAdapter extends RecyclerView.Adapter<ListJuryAdapter.JuryVi
     @Override
     public void onBindViewHolder(ListJuryAdapter.JuryViewHolder holder, final int position) {
         holder.juryDate.setText(juryItemList.get(position).getDate().toString());
-        holder.juryId.setText("Jury n°" + juryItemList.get(position).getIdJury());
+        final int idJury = juryItemList.get(position).getIdJury();
+        holder.juryId.setText("Jury n°" + idJury);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, JuryDetailsActivity.class);
                 String emplacement = position + "";
                 intent.putExtra("position", emplacement);
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-                String jury = sharedPref.getString("jury", "les jurys ne sont pas trouvés");
-                intent.putExtra("json", jury);
+                intent.putExtra("id", idJury);
                 context.startActivity(intent);
             }
         });
