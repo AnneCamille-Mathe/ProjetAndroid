@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import fr.eseo.acm.andoird.projetandroid.API.API;
-import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListJuryFragment;
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectsFragment;
 import fr.eseo.acm.andoird.projetandroid.R;
@@ -147,7 +146,6 @@ public class ChoixMenus extends API {
         String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");
         String[] params = new String[] {API.API_USER, username, API.API_TOKEN, token};
         URL url = this.buildRequest(API.API_PROJECTS, params);
-        System.out.println(url.toString());
         return this.getReplyFromHttpUrl(url);
     }
 
@@ -158,7 +156,6 @@ public class ChoixMenus extends API {
         String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");
         String[] params = new String[] {API.API_USER, username, API.API_TOKEN, token};
         URL url = this.buildRequest(API.API_MYJURY, params);
-        System.out.println(url.toString());
         return this.getReplyFromHttpUrl(url);
     }
 

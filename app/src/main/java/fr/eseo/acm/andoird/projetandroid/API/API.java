@@ -92,7 +92,6 @@ public class API   extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            System.out.println("START");
             HttpURLConnection urlConnection = null;
             try {
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -104,7 +103,6 @@ public class API   extends AppCompatActivity {
                 scanner.useDelimiter("\\A");
                 boolean hasInput = scanner.hasNext();
                 String scannerText = scanner.next();
-                Log.d("ASYNC", scannerText);
                 if (hasInput) {
                     return scannerText;
                 }
@@ -122,7 +120,6 @@ public class API   extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            System.out.println("STOP");
         }
     }
 

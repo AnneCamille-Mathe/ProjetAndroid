@@ -1,7 +1,5 @@
 package fr.eseo.acm.andoird.projetandroid.servicesAPI;
 
-import org.json.JSONObject;
-
 public class LOGONService {
     public String getToken(String url){
         String token = "";

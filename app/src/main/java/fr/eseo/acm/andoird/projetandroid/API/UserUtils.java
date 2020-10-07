@@ -10,7 +10,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,6 @@ public class UserUtils extends AppCompatActivity {
         JSONArray jsonProjectsList = jsonResults.getJSONArray("projects");
         for (int i = 0; i < jsonProjectsList.length(); i++) {
             JSONObject project = jsonProjectsList.getJSONObject(i);
-            System.out.println(project);
             String[] students = project.getString("students").split("\"");
             ArrayList<String> members = new ArrayList<>();
             for(int j=5; j<students.length; j=j+10){
@@ -49,7 +47,6 @@ public class UserUtils extends AppCompatActivity {
         List<Project> projectsList = new ArrayList<Project>();
         String[] list = array.split("\\}]\\}, ");
         for(int i=0; i<list.length; i++){
-            System.out.println(list[i]);
             String[] projectElements = list[i].split("\"");
             ArrayList<String> members = new ArrayList<>();
             for(int j=31; j<projectElements.length; j=j+10){

@@ -16,9 +16,7 @@ import java.util.List;
 import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.adapter.ListJuryAdapter;
-import fr.eseo.acm.andoird.projetandroid.adapter.ListProjectsAdapter;
 import fr.eseo.acm.andoird.projetandroid.room.Jury;
-import fr.eseo.acm.andoird.projetandroid.room.Project;
 
 public class ListJuryFragment extends AppCompatActivity {
 

@@ -1,13 +1,11 @@
 package fr.eseo.acm.andoird.projetandroid.Fragments;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,14 +18,12 @@ import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
 public class DetailsActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private Project projectList;
+
     private  String position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_project_details);
-        Intent intent = getIntent();
         if(getIntent().hasExtra("position")) {
             position = (getIntent().getStringExtra("position"));
         }

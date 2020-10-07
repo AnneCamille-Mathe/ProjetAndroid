@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,10 +21,7 @@ import java.util.List;
 import fr.eseo.acm.andoird.projetandroid.API.API;
 import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
 import fr.eseo.acm.andoird.projetandroid.R;
-import fr.eseo.acm.andoird.projetandroid.adapter.ListJuryAdapter;
-import fr.eseo.acm.andoird.projetandroid.adapter.ListProjectsAdapter;
 import fr.eseo.acm.andoird.projetandroid.adapter.ListProjectsFromJuryAdapter;
-import fr.eseo.acm.andoird.projetandroid.room.Jury;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
 public class JuryDetailsActivity extends API {
@@ -66,7 +62,6 @@ public class JuryDetailsActivity extends API {
         String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");
         String[] params = new String[] {API.API_USER, username, API.API_JURY, id, API.API_TOKEN, token};
         URL url = this.buildRequest(API.API_JURYINFO, params);
-        System.out.println(url.toString());
         return this.getReplyFromHttpUrl(url);
     }
 }
