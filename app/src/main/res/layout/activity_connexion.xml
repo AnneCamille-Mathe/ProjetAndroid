@@ -42,7 +42,7 @@
         android:layout_marginTop="148dp"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         android:layout_marginLeft="100dp" />

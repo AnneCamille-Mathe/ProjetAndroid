@@ -20,6 +20,7 @@ import fr.eseo.acm.andoird.projetandroid.room.Project;
 public class DetailsActivity extends AppCompatActivity {
 
     private  String position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

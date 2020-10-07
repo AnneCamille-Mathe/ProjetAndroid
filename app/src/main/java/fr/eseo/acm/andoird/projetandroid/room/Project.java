@@ -8,6 +8,7 @@ public class Project {
     private String title;
     private String description;
     private String superviseur;
+    private String posters;
     private boolean poster;
     private int confidentiality;
     private ArrayList<String> members;
@@ -30,6 +31,13 @@ public class Project {
         this.title = titre;
         this.superviseur = superviseur;
         this.description = description;
+    }
+
+    public Project(int idProject, String title, String description, String poster){
+        this.idProject = idProject;
+        this.title = title;
+        this.description = description;
+        this.posters = poster;
     }
 
     public int getIdProject() {
