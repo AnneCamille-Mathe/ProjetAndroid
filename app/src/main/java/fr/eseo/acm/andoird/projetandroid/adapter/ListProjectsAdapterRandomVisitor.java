@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import fr.eseo.acm.andoird.projetandroid.Fragments.DetailsActivity;
+import fr.eseo.acm.andoird.projetandroid.Fragments.DetailsActivityRandom;
 import fr.eseo.acm.andoird.projetandroid.Fragments.VisitorNotesActivity;
+import fr.eseo.acm.andoird.projetandroid.Navigation.ChoixMenusVisitor;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
@@ -40,10 +42,22 @@ public class ListProjectsAdapterRandomVisitor extends RecyclerView.Adapter<ListP
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, VisitorNotesActivity.class);
+                Intent intent = new Intent(context, ChoixMenusVisitor.class);
+
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+                SharedPreferences.Editor editor = sharedPref.edit();
+                String emplacement = position + "";
+                System.out.println(emplacement);
+                editor.putString("position", emplacement);
+                editor.commit();
+                context.startActivity(intent);
+
+                /*
+                Intent intent = new Intent(context, DetailsActivityRandom.class);
                 String emplacement = position + "";
                 intent.putExtra("position", emplacement);
                 context.startActivity(intent);
+                 */
             }
         });
     }

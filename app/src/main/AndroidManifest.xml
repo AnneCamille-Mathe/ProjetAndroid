@@ -23,6 +23,9 @@
         <activity android:name=".Fragments.RandomProjectsActivity"/>
         <activity android:name=".Navigation.VisitorActivity"/>
         <activity android:name=".Fragments.VisitorNotesActivity"/>
+        <activity android:name=".Fragments.DetailsActivityRandom"/>
+        <activity android:name=".Navigation.ChoixMenusVisitor"/>
+
         <activity android:name=".API.API"
             tools:ignore="Instantiatable" />
         <activity android:name=".API.Enum"

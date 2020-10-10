@@ -30,8 +30,7 @@ public class VisitorNotesActivity  extends AppCompatActivity {
 
     public void enregistrerNote(View v){
         EditText noteEdit = (EditText)findViewById(R.id.noteVisitor);
-        int note = Integer.parseInt(noteEdit.toString());
-        System.out.println("NOTE " + note);
-        System.out.println("POSITION " + position);
+        int note = Integer.parseInt(noteEdit.getText().toString());
+        //TODO - Enregistrer la note en fonction de la position
     }
 }

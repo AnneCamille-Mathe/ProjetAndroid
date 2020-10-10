@@ -39,6 +39,7 @@ public class ListProjectsAdapter extends RecyclerView.Adapter<ListProjectsAdapte
     public void onBindViewHolder(ListProjectsAdapter.ProjectViewHolder holder, final int position) {
         holder.txtProjectName.setText(projectItemList.get(position).getTitle());
         holder.txtProjectSupervisor.setText(projectItemList.get(position).getSuperviseur());
+        /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +52,7 @@ public class ListProjectsAdapter extends RecyclerView.Adapter<ListProjectsAdapte
                 context.startActivity(intent);
             }
         });
-
+        */
 
     }
 
