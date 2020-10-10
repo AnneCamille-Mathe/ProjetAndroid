@@ -21,6 +21,7 @@
         <activity android:name=".Fragments.DetailsActivity"/>
         <activity android:name=".Fragments.ListJuryFragment"/>
         <activity android:name=".Fragments.RandomProjectsActivity"/>
+        <activity android:name=".Navigation.VisitorActivity"/>
         <activity android:name=".API.API"
             tools:ignore="Instantiatable" />
         <activity android:name=".API.Enum"

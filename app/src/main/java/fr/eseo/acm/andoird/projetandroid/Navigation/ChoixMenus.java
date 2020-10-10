@@ -34,7 +34,8 @@ public class ChoixMenus extends API {
         } else if (role == 4) {
             setContentView(R.layout.activity_com);
         } else{
-            setContentView(R.layout.activity_visitor);
+            Intent intentVisitor = new Intent(this, VisitorActivity.class);
+            startActivity(intentVisitor);
         }
     }
 
