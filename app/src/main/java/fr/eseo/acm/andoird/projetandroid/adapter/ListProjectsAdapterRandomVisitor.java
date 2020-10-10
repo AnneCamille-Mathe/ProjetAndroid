@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+
+import fr.eseo.acm.andoird.projetandroid.Fragments.DetailsActivity;
+import fr.eseo.acm.andoird.projetandroid.Fragments.VisitorNotesActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
@@ -37,7 +40,10 @@ public class ListProjectsAdapterRandomVisitor extends RecyclerView.Adapter<ListP
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO - Création bdd locale avec les notes / projet
+                Intent intent = new Intent(context, VisitorNotesActivity.class);
+                String emplacement = position + "";
+                intent.putExtra("position", emplacement);
+                context.startActivity(intent);
             }
         });
     }

@@ -15,7 +15,7 @@
     <string name="project_supervisor">Superviseur</string>
     <string name="project_confidentiality">Confidentialité</string>
     <string name="project_description">Description</string>
-
+    <string name="noteVisitor">Note du projet [entre 0 et 20] </string>
 
     <string name="jury_project_title">Title</string>
     <string name="jury_date">Date</string>
