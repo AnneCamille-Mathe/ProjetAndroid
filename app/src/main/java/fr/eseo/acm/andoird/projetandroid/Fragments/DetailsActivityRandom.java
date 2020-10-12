@@ -57,7 +57,7 @@ public class DetailsActivityRandom extends AppCompatActivity {
         for(int i=0; i<mProjectListEnregistres.size(); i++){
             for(int j=0; j< mProjectList.size(); j++){
                 if(mProjectList.get(j).getIdProject() == mProjectListEnregistres.get(i).getIdProject()){
-                    mProjectListDetails.add(mProjectList.get(j));
+                    mProjectListDetails.add(mProjectListEnregistres.get(i));
                 }
             }
         }
@@ -73,11 +73,8 @@ public class DetailsActivityRandom extends AppCompatActivity {
         int confidentialite = projetAAfficher.getConfidentiality();
         String description = projetAAfficher.getDescription();
         String superviseur =  projetAAfficher.getSuperviseur();
-
-
         ArrayList<String> members = projetAAfficher.getMembers();
 
-        /*
         String m = "";
         for(int i=0; i<members.size(); i++){
             if(i==0){
@@ -86,7 +83,6 @@ public class DetailsActivityRandom extends AppCompatActivity {
                 m += ", "+members.get(i);
             }
         }
-        */
 
         TextView titreView = findViewById(R.id.title);
         titreView.setText(titre);
@@ -100,12 +96,8 @@ public class DetailsActivityRandom extends AppCompatActivity {
         TextView superviseurView = findViewById(R.id.supervisor);
         superviseurView.setText("Superviseur : "+superviseur);
 
-        /*
         TextView membersView = findViewById(R.id.students);
         membersView.setText("Elèves : "+m);
-
-
-         */
 
     }
 }
