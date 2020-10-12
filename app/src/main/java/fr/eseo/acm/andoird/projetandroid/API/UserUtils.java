@@ -2,6 +2,7 @@ package fr.eseo.acm.andoird.projetandroid.API;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,11 +33,10 @@ public class UserUtils extends AppCompatActivity {
             String title = project.getString("title");
             int confidentiality = project.getInt("confid");
             String descript = project.getString("descrip");
-            boolean poster = project.getBoolean("poster");
             int id = project.getInt("projectId");
             JSONObject jsonSupervisor = project.getJSONObject("supervisor");
             supervisor = jsonSupervisor.getString("forename") + " " + jsonSupervisor.getString("surname");
-            Project projet = new Project(id, title, descript, supervisor, poster, confidentiality);
+            Project projet = new Project(id, title, descript, supervisor, confidentiality);
             projet.setMembers(members);
             projectsList.add(projet);
         }
@@ -71,8 +71,7 @@ public class UserUtils extends AppCompatActivity {
             String supervisor = projectElements[19]+" "+projectElements[23];
             String description = projectElements[9];
             int confidentiality = Integer.parseInt(projectElements[12].substring(1,2));
-            boolean poster = Boolean.parseBoolean(projectElements[14].split(",")[0].substring(1));
-            Project projet = new Project(id, title, description, supervisor, poster, confidentiality);
+            Project projet = new Project(id, title, description, supervisor, confidentiality);
             projet.setMembers(members);
             projectsList.add(projet);
         }
@@ -107,5 +106,9 @@ public class UserUtils extends AppCompatActivity {
         editor.putString("projectsFromJury", allProjects.toString());
         editor.commit();
         return projectList;
+    }
+
+    public Bitmap getPoster() {
+        return null;
     }
 }
