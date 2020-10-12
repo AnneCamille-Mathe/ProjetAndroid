@@ -68,7 +68,6 @@ public class DetailsActivity extends API {
             }
         }
 
-        System.out.println("NEW ASYNC TASK");
         new PosterAsyncTask(DetailsActivity.this, mProjectList.get(Integer.parseInt(position)).getIdProject(), confidentialite).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         TextView titreView = findViewById(R.id.title);
@@ -108,7 +107,6 @@ public class DetailsActivity extends API {
         else {
             ImageView postr = findViewById(R.id.poster);
             postr.setImageBitmap(poster);
-            System.out.println("UPDATED");
         }
     }
 }
