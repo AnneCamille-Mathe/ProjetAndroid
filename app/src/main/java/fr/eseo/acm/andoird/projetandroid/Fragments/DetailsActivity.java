@@ -54,10 +54,15 @@ public class DetailsActivity extends API {
         int confidentialite = mProjectList.get(Integer.parseInt(position)).getConfidentiality();
         String description = mProjectList.get(Integer.parseInt(position)).getDescription();
         String superviseur =  mProjectList.get(Integer.parseInt(position)).getSuperviseur();
+
         String poster_base_64 = this.getPoster(mProjectList.get(Integer.parseInt(position)).getIdProject());
+        System.out.println(poster_base_64);
         TextView noPoster = findViewById(R.id.noposter);
         if (confidentialite != 0){
             noPoster.setText("Poster confidentiel !");
+        }
+        else if(poster_base_64.contains("Error converting poster")){
+            noPoster.setText("Erreur d'affichage !");
         }
         else if(!poster_base_64.contains("No Poster")) {
             byte[] decodedString = Base64.decode(poster_base_64, Base64.DEFAULT);
