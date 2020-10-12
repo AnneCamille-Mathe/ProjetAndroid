@@ -9,50 +9,44 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
-import fr.eseo.acm.andoird.projetandroid.Fragments.DetailsActivity;
+import fr.eseo.acm.andoird.projetandroid.Fragments.NotesComActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
-public class ListProjectsAdapter extends RecyclerView.Adapter<ListProjectsAdapter.ProjectViewHolder> {
+public class ListProjectsAdapterCom extends RecyclerView.Adapter<ListProjectsAdapterCom.ProjectViewHolder> {
     private List<Project> projectItemList;
     Context context;
 
-    public ListProjectsAdapter(List<Project> projectItemList, Context context) {
+    public ListProjectsAdapterCom(List<Project> projectItemList, Context context) {
         this.projectItemList = projectItemList;
         this.context = context;
     }
 
     @Override
-    public ListProjectsAdapter.ProjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ListProjectsAdapterCom.ProjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflate the layout file
-        View projectView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_project, parent, false);
-        ListProjectsAdapter.ProjectViewHolder pvh = new ListProjectsAdapter.ProjectViewHolder(projectView);
+        View projectView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_project_random, parent, false);
+        ListProjectsAdapterCom.ProjectViewHolder pvh = new ListProjectsAdapterCom.ProjectViewHolder(projectView);
         return pvh;
     }
 
     @Override
-    public void onBindViewHolder(ListProjectsAdapter.ProjectViewHolder holder, final int position) {
+    public void onBindViewHolder(ListProjectsAdapterCom.ProjectViewHolder holder, final int position) {
         holder.txtProjectName.setText(projectItemList.get(position).getTitle());
-        holder.txtProjectSupervisor.setText(projectItemList.get(position).getSuperviseur());
-
+        holder.txtProjectSupervisor.setText(projectItemList.get(position).getDescription());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailsActivity.class);
+                System.out.print("Clic");
+                Intent intent = new Intent(context, NotesComActivity.class);
                 String emplacement = position + "";
                 intent.putExtra("position", emplacement);
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-                String projets = sharedPref.getString("projets", "les projets ne sont pas trouvés");
-                intent.putExtra("json", projets);
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -65,9 +59,8 @@ public class ListProjectsAdapter extends RecyclerView.Adapter<ListProjectsAdapte
         TextView txtProjectSupervisor;
         public ProjectViewHolder(View view) {
             super(view);
-            txtProjectName=view.findViewById(R.id.idProjectTitle);
-            txtProjectSupervisor = view.findViewById(R.id.idProjectSupervisor);
+            txtProjectName=view.findViewById(R.id.idProjectTitleRandom);
+            txtProjectSupervisor = view.findViewById(R.id.idProjectDescriptionRandom);
         }
     }
 }
-
