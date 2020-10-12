@@ -1,8 +1,10 @@
 package fr.eseo.acm.andoird.projetandroid.Fragments;
 
+import android.content.AsyncQueryHandler;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Base64;
@@ -19,13 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.acm.andoird.projetandroid.API.API;
+import fr.eseo.acm.andoird.projetandroid.API.PosterAsyncTask;
 import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
 public class DetailsActivity extends API {
 
-    private  String position;
+    private String position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,25 +58,6 @@ public class DetailsActivity extends API {
         String description = mProjectList.get(Integer.parseInt(position)).getDescription();
         String superviseur =  mProjectList.get(Integer.parseInt(position)).getSuperviseur();
 
-        String poster_base_64 = this.getPoster(mProjectList.get(Integer.parseInt(position)).getIdProject());
-        System.out.println(poster_base_64);
-        TextView noPoster = findViewById(R.id.noposter);
-        if (confidentialite != 0){
-            noPoster.setText("Poster confidentiel !");
-        }
-        else if(poster_base_64.contains("Error converting poster")){
-            noPoster.setText("Erreur d'affichage !");
-        }
-        else if(!poster_base_64.contains("No Poster")) {
-            byte[] decodedString = Base64.decode(poster_base_64, Base64.DEFAULT);
-            Bitmap postr = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            ImageView poster = findViewById(R.id.poster);
-            poster.setImageBitmap(postr);
-        }
-        else {
-            noPoster.setText("Pas de poster pour ce projet !");
-        }
-
         ArrayList<String> members = mProjectList.get(Integer.parseInt(position)).getMembers();
         String m = "";
         for(int i=0; i<members.size(); i++){
@@ -83,6 +67,9 @@ public class DetailsActivity extends API {
                 m += ", "+members.get(i);
             }
         }
+
+        System.out.println("NEW ASYNC TASK");
+        new PosterAsyncTask(DetailsActivity.this, mProjectList.get(Integer.parseInt(position)).getIdProject(), confidentialite).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         TextView titreView = findViewById(R.id.title);
         titreView.setText(titre);
@@ -108,5 +95,20 @@ public class DetailsActivity extends API {
         String[] params = new String[] {API.API_USER, username, API_PROJECT_ID, String.valueOf(id), API.API_STYLE, style, API.API_TOKEN, token};
         URL url = this.buildRequest(API.API_POSTER, params);
         return this.getReplyFromHttpUrl(url);
+    }
+
+    public void updatePoster (Bitmap poster, int confidentialite) {
+        TextView noPoster = findViewById(R.id.noposter);
+        if (confidentialite != 0){
+            noPoster.setText("Poster confidentiel !");
+        }
+        else if(poster == null){
+            //TODO afficher une image prédéfinie
+        }
+        else {
+            ImageView postr = findViewById(R.id.poster);
+            postr.setImageBitmap(poster);
+            System.out.println("UPDATED");
+        }
     }
 }
