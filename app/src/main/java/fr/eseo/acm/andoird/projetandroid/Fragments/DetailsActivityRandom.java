@@ -50,9 +50,6 @@ public class DetailsActivityRandom extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        //TODO - Afficher les détails en fonction de l'ID du projet (récupéré dans mProjectList, "id")
-
         //Enregistrement des details des projets
         for(int i=0; i<mProjectListEnregistres.size(); i++){
             for(int j=0; j< mProjectList.size(); j++){
