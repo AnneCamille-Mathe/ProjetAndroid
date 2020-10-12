@@ -1,5 +1,7 @@
 package fr.eseo.acm.andoird.projetandroid.room;
 
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 public class Project {
@@ -9,16 +11,24 @@ public class Project {
     private String description;
     private String superviseur;
     private String posters;
-    private boolean poster;
+    private Bitmap poster;
     private int confidentiality;
     private ArrayList<String> members;
 
-    public Project(int idProject, String titre, String description, String superviseur, boolean poster, int confidentiality) {
+    public Project(int idProject, String titre, String description, String superviseur, Bitmap poster, int confidentiality) {
         this.idProject = idProject;
         this.title = titre;
         this.description = description;
         this.superviseur = superviseur;
         this.poster = poster;
+        this.confidentiality = confidentiality;
+    }
+
+    public Project(int idProject, String titre, String description, String superviseur, int confidentiality) {
+        this.idProject = idProject;
+        this.title = titre;
+        this.description = description;
+        this.superviseur = superviseur;
         this.confidentiality = confidentiality;
     }
 
@@ -72,11 +82,11 @@ public class Project {
         this.superviseur = superviseur;
     }
 
-    public boolean getPoster() {
+    public Bitmap getPoster() {
         return poster;
     }
 
-    public void setPoster(boolean poster) {
+    public void setPoster(Bitmap poster) {
         this.poster = poster;
     }
 

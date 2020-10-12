@@ -13,12 +13,7 @@ import fr.eseo.acm.andoird.projetandroid.Fragments.ListJuryFragment;
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectsFragment;
 import fr.eseo.acm.andoird.projetandroid.R;
 
-import java.io.IOException;
 import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
 
 public class ChoixMenus extends API {
 
@@ -59,68 +54,32 @@ public class ChoixMenus extends API {
         if(role == 4){
             switch (item.getItemId()) {
                 case R.id.projects:
-                    try {
-                        openActivityProject();
-                    } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException e) {
-                        e.printStackTrace();
-                    }
+                    openActivityProject();
                     break;
                 case R.id.jury:
-                    try {
-                        openActivityJuryCom();
-                    } catch (CertificateException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchAlgorithmException e) {
-                        e.printStackTrace();
-                    } catch (KeyStoreException e) {
-                        e.printStackTrace();
-                    } catch (KeyManagementException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    openActivityJuryCom();
                     break;
                 case R.id.marks:
-                    try {
-                        openActivityNotesCom();
-                    } catch (CertificateException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchAlgorithmException e) {
-                        e.printStackTrace();
-                    } catch (KeyStoreException e) {
-                        e.printStackTrace();
-                    } catch (KeyManagementException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    openActivityNotesCom();
                     break;
             }
         } else if (role == 1) {
             switch (item.getItemId()) {
                 case R.id.projects:
-                    try {
-                        openActivityProject();
-                    } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException e) {
-                        e.printStackTrace();
-                    }
+                    openActivityProject();
                     break;
                 case R.id.posters:
                     openActivityJuryPosters();
                     break;
                 case R.id.my_jury:
-                    try {
-                        openActivityJuryMine();
-                    } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException e) {
-                        e.printStackTrace();
-                    }
+                    openActivityJuryMine();
                     break;
             }
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void openActivityProject() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public void openActivityProject() {
         Intent intent = new Intent(this, ListProjectsFragment.class);
         intent.putExtra("json", this.getProjects());
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -130,17 +89,17 @@ public class ChoixMenus extends API {
         startActivity(intent);
     }
 
-    public void openActivityJuryCom() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public void openActivityJuryCom() {
         Intent intent = new Intent(this, ComJuryActivity.class);
         startActivity(intent);
     }
 
-    public void openActivityNotesCom() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public void openActivityNotesCom() {
         Intent intent = new Intent(this, ComNotesActivity.class);
         startActivity(intent);
     }
 
-    public void openActivityJuryMine() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public void openActivityJuryMine() {
         Intent intent = new Intent(this, ListJuryFragment.class);
         intent.putExtra("json", this.getMyJury());
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -155,7 +114,7 @@ public class ChoixMenus extends API {
         startActivity(intent);
     }
 
-    public String getProjects() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
+    public String getProjects() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String username = sharedPref.getString("saved_username", "le login n'est pas trouvé");
         String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");
@@ -165,7 +124,7 @@ public class ChoixMenus extends API {
     }
 
 
-    public String getMyJury() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
+    public String getMyJury() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String username = sharedPref.getString("saved_username", "le login n'est pas trouvé");
         String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");

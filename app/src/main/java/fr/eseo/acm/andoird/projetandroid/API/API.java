@@ -29,12 +29,15 @@ public class API   extends AppCompatActivity {
     public static final String API_PASS = "pass";
     public static final String API_TOKEN = "token";
     public static final String API_JURY = "jury";
+    public static final String API_PROJECT_ID = "proj";
+    public static final String API_STYLE = "style";
     public static final String API_JURYINFO = "JYINF";
     public static final String API_MYJURY = "MYJUR";
+    public static final String API_POSTER = "POSTR";
 
 
     //FROM MOVIESEO
-    public URL buildRequest(String query, String[] parameters) throws CertificateException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, IOException {
+    public URL buildRequest(String query, String[] parameters) {
         this.handleSSLHandshake();
         try {
             Uri.Builder url = Uri.parse(API_BASE_URL).buildUpon().appendQueryParameter(API_KEY_QUERY, query);
@@ -49,7 +52,7 @@ public class API   extends AppCompatActivity {
     }
 
     //FROM MOVIESEO
-    public String getReplyFromHttpUrl(URL url) throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+    public String getReplyFromHttpUrl(URL url) {
         this.handleSSLHandshake();
 
 
