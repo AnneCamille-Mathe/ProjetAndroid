@@ -102,7 +102,8 @@ public class DetailsActivity extends API {
             noPoster.setText("Poster confidentiel !");
         }
         else if(poster == null){
-            //TODO afficher une image prédéfinie
+            TextView posterText = findViewById(R.id.noposter);
+            posterText.setText("Pas de poster à afficher !");
         }
         else {
             ImageView postr = findViewById(R.id.poster);
