@@ -1,13 +1,17 @@
 
 package fr.eseo.acm.andoird.projetandroid.Navigation;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.net.URL;
 import java.security.KeyManagementException;
@@ -58,13 +62,14 @@ public class Connexion extends API {
         editor.putString("saved_username", username.getText().toString());
         editor.commit();
 
-        int role = this.getRole(username.getText().toString());
-
-        //Ajouter ici le menu
         if(token != null){
+            int role = this.getRole(username.getText().toString());
             Intent intent = new Intent(this, ChoixMenus.class);
             intent.putExtra("role", role);
             startActivity(intent);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Vos identifiants sont invalides, veuillez réessayer !", Toast.LENGTH_LONG).show();
         }
     }
 
