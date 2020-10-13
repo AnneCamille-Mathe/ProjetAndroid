@@ -24,7 +24,6 @@ public class PosterAsyncTask extends AsyncTask<URL, Void, Bitmap> {
     @Override
     public Bitmap doInBackground(URL... urls) {
         String poster_base_64 = this.detailsActivity.getPoster(this.idProject);
-        System.out.println(poster_base_64);
         if(poster_base_64.contains("Error converting poster") || poster_base_64.contains("No Poster")){
             return null;
         }

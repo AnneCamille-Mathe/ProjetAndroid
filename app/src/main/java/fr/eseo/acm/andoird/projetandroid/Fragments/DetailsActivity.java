@@ -98,12 +98,15 @@ public class DetailsActivity extends API {
 
     public void updatePoster (Bitmap poster, int confidentialite) {
         TextView noPoster = findViewById(R.id.noposter);
-        if (confidentialite != 0){
+        boolean myJury = false;
+        if(getIntent().hasExtra("originClass")){
+            myJury = getIntent().getStringExtra("originClass").equals("jury");
+        }
+        if (confidentialite != 0 && !myJury){
             noPoster.setText("Poster confidentiel !");
         }
         else if(poster == null){
-            TextView posterText = findViewById(R.id.noposter);
-            posterText.setText("Pas de poster à afficher !");
+            noPoster.setText("Pas de poster à afficher !");
         }
         else {
             ImageView postr = findViewById(R.id.poster);

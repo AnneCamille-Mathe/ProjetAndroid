@@ -107,8 +107,4 @@ public class UserUtils extends AppCompatActivity {
         editor.commit();
         return projectList;
     }
-
-    public Bitmap getPoster() {
-        return null;
-    }
 }

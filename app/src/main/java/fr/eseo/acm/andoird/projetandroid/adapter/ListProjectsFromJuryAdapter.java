@@ -43,6 +43,7 @@ public class ListProjectsFromJuryAdapter extends RecyclerView.Adapter<ListProjec
                 Intent intent = new Intent(context, DetailsActivity.class);
                 String emplacement = position + "";
                 intent.putExtra("position", emplacement);
+                intent.putExtra("originClass", "jury");
                 context.startActivity(intent);
             }
         });
