@@ -30,6 +30,8 @@ public class DetailsActivity extends API {
 
     private String position;
 
+    private String superviseurUsername;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,17 @@ public class DetailsActivity extends API {
         int confidentialite = mProjectList.get(Integer.parseInt(position)).getConfidentiality();
         String description = mProjectList.get(Integer.parseInt(position)).getDescription();
         String superviseur =  mProjectList.get(Integer.parseInt(position)).getSuperviseur();
+
+        String[] supName = superviseur.split(" ");
+        if(supName[1].length()<5){
+            this.superviseurUsername = supName[1].toLowerCase() + supName[0].substring(0, 3).toLowerCase();
+        }
+        else if(supName[0].length()<3){
+            this.superviseurUsername = supName[1].substring(0, 5).toLowerCase() + supName[0].toLowerCase();
+        }
+        else{
+            this.superviseurUsername = supName[1].substring(0, 5).toLowerCase() + supName[0].substring(0, 3).toLowerCase();
+        }
 
         ArrayList<String> members = mProjectList.get(Integer.parseInt(position)).getMembers();
         String m = "";
@@ -99,10 +112,12 @@ public class DetailsActivity extends API {
     public void updatePoster (Bitmap poster, int confidentialite) {
         TextView noPoster = findViewById(R.id.noposter);
         boolean myJury = false;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String username = sharedPref.getString("saved_username", "le login n'est pas trouvé");
         if(getIntent().hasExtra("originClass")){
             myJury = getIntent().getStringExtra("originClass").equals("jury");
         }
-        if (confidentialite != 0 && !myJury){
+        if (confidentialite != 0 && !myJury && !username.equals(this.superviseurUsername)){
             noPoster.setText("Poster confidentiel !");
         }
         else if(poster == null){
