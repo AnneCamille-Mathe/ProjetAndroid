@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -62,6 +63,7 @@ public class DetailsActivity extends API {
         int confidentialite = mProjectList.get(Integer.parseInt(position)).getConfidentiality();
         String description = mProjectList.get(Integer.parseInt(position)).getDescription();
         String superviseur =  mProjectList.get(Integer.parseInt(position)).getSuperviseur();
+        final int projectId = mProjectList.get(Integer.parseInt(position)).getIdProject();
 
         String[] supName = superviseur.split(" ");
         if(supName[1].length()<5){
@@ -84,7 +86,7 @@ public class DetailsActivity extends API {
             }
         }
 
-        new PosterAsyncTask(DetailsActivity.this, mProjectList.get(Integer.parseInt(position)).getIdProject(), confidentialite).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        new PosterAsyncTask(DetailsActivity.this, projectId, confidentialite).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         TextView titreView = findViewById(R.id.title);
         titreView.setText(titre);
@@ -100,6 +102,27 @@ public class DetailsActivity extends API {
 
         TextView membersView = findViewById(R.id.students);
         membersView.setText("Elèves : "+m);
+
+        boolean myJury = false;
+        if(getIntent().hasExtra("originClass")){
+            myJury = getIntent().getStringExtra("originClass").equals("jury");
+        }
+
+        Button note = findViewById(R.id.noteProject);
+        note.setVisibility(View.INVISIBLE);
+
+        if(myJury){
+            note.setVisibility(View.VISIBLE);
+            note.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(DetailsActivity.this, JuryNotesActivity.class);
+                    intent.putExtra("idProject", projectId);
+                    intent.putExtra("position", position);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     public String getPoster(int id){

@@ -26,7 +26,7 @@ public class VisitorNotesActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notes_visitor);
+        setContentView(R.layout.activity_notes);
 
         Button button = (Button) findViewById(R.id.validerNote);
         button.setOnClickListener(new View.OnClickListener() {
