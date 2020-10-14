@@ -59,6 +59,7 @@ public class ComJuryActivity extends API {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("randomProjects", randomProject);
         editor.putString("notes", "");
+        editor.putString("commentaires", "");
         editor.commit();
         startActivity(intent);
     }

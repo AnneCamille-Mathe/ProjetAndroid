@@ -17,6 +17,7 @@ import java.security.cert.CertificateException;
 
 import fr.eseo.acm.andoird.projetandroid.API.API;
 import fr.eseo.acm.andoird.projetandroid.Fragments.DetailsActivityRandom;
+import fr.eseo.acm.andoird.projetandroid.Fragments.VisitorComActivity;
 import fr.eseo.acm.andoird.projetandroid.Fragments.VisitorNotesActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 
@@ -38,6 +39,13 @@ public class ChoixMenusVisitor extends API {
                   ChoixMenusVisitor.this.notes(v);
             }
         });
+
+        Button buttonCommentaire = (Button) findViewById(R.id.buttonCommentaire);
+        buttonCommentaire.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ChoixMenusVisitor.this.commentaire(v);
+            }
+        });
     }
 
     public void details(View v){
@@ -50,6 +58,14 @@ public class ChoixMenusVisitor extends API {
 
     public void notes(View v){
         Intent intent = new Intent(this, VisitorNotesActivity.class);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String position = sharedPref.getString("position", "position non trouvée !");
+        intent.putExtra("position", position);
+        startActivity(intent);
+    }
+
+    public void commentaire(View v){
+        Intent intent = new Intent(this, VisitorComActivity.class);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String position = sharedPref.getString("position", "position non trouvée !");
         intent.putExtra("position", position);

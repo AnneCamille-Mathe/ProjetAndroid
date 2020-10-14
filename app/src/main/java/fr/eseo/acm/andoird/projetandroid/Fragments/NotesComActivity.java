@@ -50,7 +50,6 @@ public class NotesComActivity extends AppCompatActivity {
         }
 
         int idProject = mProjectList.get(Integer.parseInt(position)).getIdProject();
-        Log.i(TAG, "ID de la classe = " + idProject);
 
         //decouper les notes
         List<String> notesAAfficher = new ArrayList<String>();
@@ -69,7 +68,10 @@ public class NotesComActivity extends AppCompatActivity {
             afficheNote = afficheNote + " / " + notesAAfficher.get(i);
         }
         TextView textNotes = findViewById(R.id.textNotes);
-        textNotes.setText(afficheNote.substring(1).substring(1));
+
+        //TODO - If not null supprimer les 2 premiers caractere (substring(1).substring(1))
+
+        textNotes.setText(afficheNote);
 
         /*
         TextView textCommentaire = findViewById(R.id.textCommentaire);
