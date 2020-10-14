@@ -47,7 +47,6 @@ public class ListProjectsAdapterRandomVisitor extends RecyclerView.Adapter<ListP
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
                 SharedPreferences.Editor editor = sharedPref.edit();
                 String emplacement = position + "";
-                System.out.println(emplacement);
                 editor.putString("position", emplacement);
                 editor.commit();
                 context.startActivity(intent);

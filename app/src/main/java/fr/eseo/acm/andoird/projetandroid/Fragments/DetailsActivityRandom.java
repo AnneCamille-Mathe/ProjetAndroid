@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +43,9 @@ public class DetailsActivityRandom extends API {
         projet = sharedPref.getString("randomProjects", "projets non trouvés !");
         projetEnregistres = sharedPref.getString("projets", "projets non trouvés !");
 
+        Button note = findViewById(R.id.noteProject);
+        note.setVisibility(View.INVISIBLE);
+
         List<Project> mProjectList = null;
         JSONObject jsonProjectLists = null;
         JSONObject jsonProjectListsEnregistres = null;
@@ -54,7 +58,6 @@ public class DetailsActivityRandom extends API {
         try {
             jsonProjectLists = new JSONObject(projet);
             jsonProjectListsEnregistres = new JSONObject(projetEnregistres);
-            System.out.println(jsonProjectLists);
             mProjectList = UserUtils.parseForProjectsForPorte(jsonProjectLists);
             mProjectListEnregistres = UserUtils.parseForProjectsWithDescrip(jsonProjectListsEnregistres);
         } catch (JSONException e) {

@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -17,17 +18,36 @@ import fr.eseo.acm.andoird.projetandroid.R;
 
 public class JuryNotesActivity extends API {
 
-    String position;
+    private String position;
+
+    private float note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        Button button = (Button) findViewById(R.id.validerNote);
+        Button button = findViewById(R.id.validerNote);
+        TextView givenNote = findViewById(R.id.givenNote);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        final String noteProjet = sharedPref.getString("noteProjet"+getIntent().getIntExtra("idProject", 0),
+                                                "Pas de note attribuée");
+
+        if(!noteProjet.equals("Pas de note attribuée")){
+            givenNote.setText("Note attribuée à ce projet : "+noteProjet);
+        }
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                JuryNotesActivity.this.enregistrerNote(v);
+                EditText noteEdit = findViewById(R.id.noteVisitor);
+                note = Float.parseFloat(noteEdit.getText().toString());
+                if(note != Float.parseFloat(noteProjet)) {
+                    JuryNotesActivity.this.enregistrerNote(v);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Vous devez saisir une note différente de celle déjà attribuée !", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -50,6 +70,9 @@ public class JuryNotesActivity extends API {
             }
         }
         if(valid){
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("noteProjet"+getIntent().getIntExtra("idProject", 0), String.valueOf(note));
+            editor.commit();
             this.finish();
         }
         else {
@@ -58,8 +81,8 @@ public class JuryNotesActivity extends API {
     }
 
     public String noter(int idStudent){
-        EditText noteEdit = (EditText)findViewById(R.id.noteVisitor);
-        float note = Float.parseFloat(noteEdit.getText().toString());
+        EditText noteEdit = findViewById(R.id.noteVisitor);
+        note = Float.parseFloat(noteEdit.getText().toString());
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String username = sharedPref.getString("saved_username", "le login n'est pas trouvé");

@@ -19,6 +19,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.409" />
 
+    <TextView
+        android:id="@+id/givenNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginBottom="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/validerNote"
+        app:layout_constraintStart_toStartOf="@id/validerNote"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/validerNote"
         android:layout_width="311dp"
