@@ -1,6 +1,7 @@
 package fr.eseo.acm.andoird.projetandroid.Fragments;
 
 import android.content.AsyncQueryHandler;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Base64;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ import java.util.List;
 import fr.eseo.acm.andoird.projetandroid.API.API;
 import fr.eseo.acm.andoird.projetandroid.API.PosterAsyncTask;
 import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
+import fr.eseo.acm.andoird.projetandroid.Navigation.FullScreenPosterActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
@@ -109,7 +112,7 @@ public class DetailsActivity extends API {
         return this.getReplyFromHttpUrl(url);
     }
 
-    public void updatePoster (Bitmap poster, int confidentialite) {
+    public void updatePoster (final Bitmap poster, int confidentialite) {
         TextView noPoster = findViewById(R.id.noposter);
         boolean myJury = false;
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -126,6 +129,13 @@ public class DetailsActivity extends API {
         else {
             ImageView postr = findViewById(R.id.poster);
             postr.setImageBitmap(poster);
+            postr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(DetailsActivity.this, FullScreenPosterActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 }

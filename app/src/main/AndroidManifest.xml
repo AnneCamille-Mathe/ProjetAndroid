@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="fr.eseo.acm.andoird.projetandroid">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,26 +13,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Navigation.ChoixMenus"/>
-        <activity android:name=".Navigation.Connexion"/>
-        <activity android:name=".Navigation.ComJuryActivity"/>
-        <activity android:name=".Navigation.ComNotesActivity"/>
-        <activity android:name=".Navigation.JuryPostersActivity"/>
-        <activity android:name=".Navigation.JuryDetailsActivity"/>
-        <activity android:name=".Fragments.ListProjectsFragment"/>
-        <activity android:name=".Fragments.DetailsActivity"/>
-        <activity android:name=".Fragments.ListJuryFragment"/>
-        <activity android:name=".Fragments.RandomProjectsActivity"/>
-        <activity android:name=".Navigation.VisitorActivity"/>
-        <activity android:name=".Fragments.VisitorNotesActivity"/>
-        <activity android:name=".Fragments.DetailsActivityRandom"/>
-        <activity android:name=".Navigation.ChoixMenusVisitor"/>
-        <activity android:name=".Fragments.NotesComActivity"/>
-        <activity android:name=".Fragments.VisitorComActivity"/>
-
-        <activity android:name=".API.API"
+        <activity android:name=".Navigation.ChoixMenus" />
+        <activity android:name=".Navigation.Connexion" />
+        <activity android:name=".Navigation.ComJuryActivity" />
+        <activity android:name=".Navigation.ComNotesActivity" />
+        <activity android:name=".Navigation.JuryPostersActivity" />
+        <activity android:name=".Navigation.JuryDetailsActivity" />
+        <activity android:name=".Fragments.ListProjectsFragment" />
+        <activity android:name=".Fragments.DetailsActivity" />
+        <activity android:name=".Fragments.ListJuryFragment" />
+        <activity android:name=".Fragments.RandomProjectsActivity" />
+        <activity android:name=".Navigation.VisitorActivity" />
+        <activity android:name=".Fragments.VisitorNotesActivity" />
+        <activity android:name=".Fragments.DetailsActivityRandom" />
+        <activity android:name=".Navigation.ChoixMenusVisitor" />
+        <activity android:name=".Fragments.NotesComActivity" />
+        <activity android:name=".Fragments.VisitorComActivity" />
+        <activity android:name=".Navigation.FullScreenPosterActivity" />
+        <activity
+            android:name=".API.API"
             tools:ignore="Instantiatable" />
-        <activity android:name=".API.Enum"
+        <activity
+            android:name=".API.Enum"
             tools:ignore="Instantiatable" />
 
         <activity android:name=".MainActivity">
