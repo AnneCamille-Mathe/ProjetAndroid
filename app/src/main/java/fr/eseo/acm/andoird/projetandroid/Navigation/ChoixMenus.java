@@ -68,9 +68,6 @@ public class ChoixMenus extends API {
                 case R.id.projects:
                     openActivityProject();
                     break;
-                case R.id.posters:
-                    openActivityJuryPosters();
-                    break;
                 case R.id.my_jury:
                     openActivityJuryMine();
                     break;
@@ -106,11 +103,6 @@ public class ChoixMenus extends API {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("jury", this.getMyJury());
         editor.commit();
-        startActivity(intent);
-    }
-
-    public void openActivityJuryPosters() {
-        Intent intent = new Intent(this, JuryPostersActivity.class);
         startActivity(intent);
     }
 

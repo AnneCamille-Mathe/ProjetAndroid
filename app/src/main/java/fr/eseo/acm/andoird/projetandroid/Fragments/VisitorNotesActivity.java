@@ -16,7 +16,6 @@ import org.json.JSONObject;
 import java.util.List;
 
 import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
-import fr.eseo.acm.andoird.projetandroid.Navigation.JuryPostersActivity;
 import fr.eseo.acm.andoird.projetandroid.Navigation.VisitorActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;

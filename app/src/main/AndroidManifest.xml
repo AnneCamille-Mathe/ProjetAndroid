@@ -17,7 +17,6 @@
         <activity android:name=".Navigation.Connexion" />
         <activity android:name=".Navigation.ComJuryActivity" />
         <activity android:name=".Navigation.ComNotesActivity" />
-        <activity android:name=".Navigation.JuryPostersActivity" />
         <activity android:name=".Navigation.JuryDetailsActivity" />
         <activity android:name=".Fragments.ListProjectsFragment" />
         <activity android:name=".Fragments.DetailsActivity" />
@@ -27,14 +26,10 @@
         <activity android:name=".Fragments.VisitorNotesActivity" />
         <activity android:name=".Fragments.DetailsActivityRandom" />
         <activity android:name=".Navigation.ChoixMenusVisitor" />
-        <activity android:name=".Fragments.NotesComActivity" />
-        <activity android:name=".Fragments.VisitorComActivity" />
+        <activity android:name=".Fragments.NotesComActivity" />        <activity android:name=".Fragments.VisitorComActivity" />
         <activity android:name=".Navigation.FullScreenPosterActivity" />
         <activity
             android:name=".API.API"
-            tools:ignore="Instantiatable" />
-        <activity
-            android:name=".API.Enum"
             tools:ignore="Instantiatable" />
 
         <activity android:name=".MainActivity">
