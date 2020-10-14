@@ -40,7 +40,6 @@ public class ListProjectsAdapterCom extends RecyclerView.Adapter<ListProjectsAda
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.print("Clic");
                 Intent intent = new Intent(context, NotesComActivity.class);
                 String emplacement = position + "";
                 intent.putExtra("position", emplacement);

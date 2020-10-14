@@ -26,6 +26,7 @@
         <activity android:name=".Fragments.DetailsActivityRandom"/>
         <activity android:name=".Navigation.ChoixMenusVisitor"/>
         <activity android:name=".Fragments.NotesComActivity"/>
+        <activity android:name=".Fragments.VisitorComActivity"/>
 
         <activity android:name=".API.API"
             tools:ignore="Instantiatable" />
