@@ -10,10 +10,12 @@ import android.util.Base64;
 import java.net.URL;
 
 import fr.eseo.acm.andoird.projetandroid.Fragments.DetailsActivity;
+import fr.eseo.acm.andoird.projetandroid.Fragments.DetailsActivityRandom;
 
 public class PosterAsyncTask extends AsyncTask<URL, Void, Bitmap> {
 
-    private DetailsActivity detailsActivity;
+    private DetailsActivity detailsActivity = null;
+    private DetailsActivityRandom detailsActivityRandom = null;
     private int idProject;
     private int confidentialite;
 
@@ -23,10 +25,24 @@ public class PosterAsyncTask extends AsyncTask<URL, Void, Bitmap> {
         this.confidentialite = confid;
     }
 
+    public PosterAsyncTask (DetailsActivityRandom details, int id, int confid) {
+        this.detailsActivityRandom = details;
+        this.idProject = id;
+        this.confidentialite = confid;
+    }
+
     @Override
     public Bitmap doInBackground(URL... urls) {
-        String poster_base_64 = this.detailsActivity.getPoster(this.idProject);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(detailsActivity.getApplicationContext());
+        String poster_base_64;
+        SharedPreferences sharedPref;
+        if(this.detailsActivityRandom == null){
+            poster_base_64 = this.detailsActivity.getPoster(this.idProject);
+            sharedPref = PreferenceManager.getDefaultSharedPreferences(detailsActivity.getApplicationContext());
+        }
+        else{
+            poster_base_64 = this.detailsActivityRandom.getPoster(this.idProject);
+            sharedPref = PreferenceManager.getDefaultSharedPreferences(detailsActivityRandom.getApplicationContext());
+        }
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("saved_base_64_image", poster_base_64);
         editor.commit();
@@ -38,6 +54,11 @@ public class PosterAsyncTask extends AsyncTask<URL, Void, Bitmap> {
     }
 
     public void onPostExecute(Bitmap results) {
-        this.detailsActivity.updatePoster(results, this.confidentialite);
+        if(this.detailsActivityRandom == null){
+            this.detailsActivity.updatePoster(results, this.confidentialite);
+        }
+        else {
+            this.detailsActivityRandom.updatePoster(results, this.confidentialite);
+        }
     }
 }
