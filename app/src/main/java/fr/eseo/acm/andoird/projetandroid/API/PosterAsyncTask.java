@@ -1,8 +1,10 @@
 package fr.eseo.acm.andoird.projetandroid.API;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 
 import java.net.URL;
@@ -24,6 +26,10 @@ public class PosterAsyncTask extends AsyncTask<URL, Void, Bitmap> {
     @Override
     public Bitmap doInBackground(URL... urls) {
         String poster_base_64 = this.detailsActivity.getPoster(this.idProject);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(detailsActivity.getApplicationContext());
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("saved_base_64_image", poster_base_64);
+        editor.commit();
         if(poster_base_64.contains("Error converting poster") || poster_base_64.contains("No Poster")){
             return null;
         }
