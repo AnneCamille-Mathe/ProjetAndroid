@@ -31,9 +31,12 @@ public class API   extends AppCompatActivity {
     public static final String API_JURY = "jury";
     public static final String API_PROJECT_ID = "proj";
     public static final String API_STYLE = "style";
+    public static final String API_STUDENT = "student";
+    public static final String API_NOTE = "note";
     public static final String API_JURYINFO = "JYINF";
     public static final String API_MYJURY = "MYJUR";
     public static final String API_POSTER = "POSTR";
+    public static final String API_NEWNT = "NEWNT";
 
 
     //FROM MOVIESEO

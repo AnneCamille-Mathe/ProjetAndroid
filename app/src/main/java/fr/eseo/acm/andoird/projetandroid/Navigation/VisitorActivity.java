@@ -80,7 +80,7 @@ public class VisitorActivity extends AppCompatActivity {
                 }
             }
 
-            
+
             mAdapter = new ListProjectsAdapterRandomVisitor(listProjets, this);
             mRecyclerView.setAdapter(mAdapter);
 
