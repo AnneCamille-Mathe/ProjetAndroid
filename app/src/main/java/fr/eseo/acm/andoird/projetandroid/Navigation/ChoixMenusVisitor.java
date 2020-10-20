@@ -46,6 +46,13 @@ public class ChoixMenusVisitor extends API {
                 ChoixMenusVisitor.this.commentaire(v);
             }
         });
+
+        Button buttonEmplacement = (Button) findViewById(R.id.buttonEmplacement);
+        buttonEmplacement.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ChoixMenusVisitor.this.emplacement(v);
+            }
+        });
     }
 
     public void details(View v){
@@ -69,6 +76,11 @@ public class ChoixMenusVisitor extends API {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String position = sharedPref.getString("position", "position non trouvée !");
         intent.putExtra("position", position);
+        startActivity(intent);
+    }
+
+    public void emplacement(View v){
+        Intent intent = new Intent(this, EmplacementPlan.class);
         startActivity(intent);
     }
 
