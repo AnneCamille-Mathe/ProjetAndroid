@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
@@ -50,13 +51,48 @@ public class VisitorComActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String projet = sharedPref.getString("randomProjects", "projets non trouvés !");
-        List<Project> mProjectList = UserUtils.parseForProjectsForPorte(new JSONObject(projet));
 
-        String comEnregristres = sharedPref.getString("commentaires", "");
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("commentaires", comEnregristres + "-" + commentaire + "/" + mProjectList.get(Integer.parseInt(position)).getIdProject());
-        editor.commit();
-        Intent intent = new Intent(this, VisitorActivity.class);
-        startActivity(intent);
+        if(projet.contains("*")){
+            String projetSansEtoile = projet.substring(1);
+            String projetSansAccoladeG = projetSansEtoile.replace("[", "");
+            String projetSansAccoladeD = projetSansAccoladeG.replace("]", "");
+            String projetSansVirgule = projetSansAccoladeD.replace(",", "");
+            String[] idProjetsList = projetSansVirgule.split(" ");
+
+            ArrayList<Integer> idProjets = new ArrayList<>();
+            for (int i = 0; i < idProjetsList.length; i++) {
+                if (isNumeric(idProjetsList[i])) {
+                    idProjets.add(Integer.parseInt(idProjetsList[i]));
+                }
+            }
+
+            String comEnregristres = sharedPref.getString("commentaires", "");
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("commentaires", comEnregristres + "-" + commentaire + "/" +  idProjets.get(Integer.parseInt(position)));
+            editor.commit();
+            Intent intent = new Intent(this, VisitorActivity.class);
+            startActivity(intent);
+
+        }
+        else {
+            List<Project> mProjectList = UserUtils.parseForProjectsForPorte(new JSONObject(projet));
+
+            String comEnregristres = sharedPref.getString("commentaires", "");
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("commentaires", comEnregristres + "-" + commentaire + "/" + mProjectList.get(Integer.parseInt(position)).getIdProject());
+            editor.commit();
+            Intent intent = new Intent(this, VisitorActivity.class);
+            startActivity(intent);
+        }
+    }
+
+
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }
