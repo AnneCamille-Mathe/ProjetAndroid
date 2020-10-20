@@ -96,7 +96,8 @@ public class ListProjectsAdapterChoix extends RecyclerView.Adapter<ListProjectsA
 
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("randomProjects", "*" + projetsChoisis.toString());
-        Log.i(TAG, "random = " + projetsChoisis.toString());
+        editor.putString("notes", "");
+        editor.putString("commentaires", "");
         editor.commit();
 
         Intent intent = new Intent(view.getContext(), ComJuryActivity.class);
