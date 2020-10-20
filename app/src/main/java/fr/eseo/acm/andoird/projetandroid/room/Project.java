@@ -56,6 +56,11 @@ public class Project {
         this.description = "d";
     }
 
+    public Project(int idProject) {
+        this.idProject = idProject;
+        this.description = "d";
+    }
+
     public int getIdProject() {
         return idProject;
     }

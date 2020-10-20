@@ -37,13 +37,18 @@ public class NotesComActivity extends AppCompatActivity {
         String notes = sharedPref.getString("notes", "");
         String commentaires = sharedPref.getString("commentaires", "");
 
-        if (notes.charAt(0) == ('-')) {
-            notes = notes.substring(1);
+        if (notes != "") {
+            if (notes.charAt(0) == ('-')) {
+                notes = notes.substring(1);
+            }
         }
 
-        if (commentaires.charAt(0) == ('-')) {
-            commentaires = commentaires.substring(1);
+        if (commentaires != "") {
+            if (commentaires.charAt(0) == ('-')) {
+                commentaires = commentaires.substring(1);
+            }
         }
+
 
         //Récuperer l'ID du projet a partir de la position
 
@@ -60,20 +65,23 @@ public class NotesComActivity extends AppCompatActivity {
         List<String> notesAAfficher = new ArrayList<String>();
         String[] listeNotes = notes.split("-");
 
-        for (int i = 0; i < listeNotes.length; i++) {
-            String[] notesEtId = listeNotes[i].split("/");
-            if (Integer.parseInt(notesEtId[1]) == idProject) {
-                notesAAfficher.add(notesEtId[0]);
+        if (notes != "") {
+            for (int i = 0; i < listeNotes.length; i++) {
+                String[] notesEtId = listeNotes[i].split("/");
+                if (Integer.parseInt(notesEtId[1]) == idProject) {
+                    notesAAfficher.add(notesEtId[0]);
+                }
             }
         }
-
         List<String> commentairesAAfficher = new ArrayList<String>();
         String[] listeCommentaires = commentaires.split("-");
 
-        for (int i = 0; i < listeCommentaires.length; i++) {
-            String[] commentaireEtId = listeCommentaires[i].split("/");
-            if (Integer.parseInt(commentaireEtId[1]) == idProject) {
-                commentairesAAfficher.add(commentaireEtId[0]);
+        if (commentaires != "") {
+            for (int i = 0; i < listeCommentaires.length; i++) {
+                String[] commentaireEtId = listeCommentaires[i].split("/");
+                if (Integer.parseInt(commentaireEtId[1]) == idProject) {
+                    commentairesAAfficher.add(commentaireEtId[0]);
+                }
             }
         }
 

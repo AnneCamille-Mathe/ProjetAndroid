@@ -44,21 +44,46 @@ public class ComNotesActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String project_random = sharedPref.getString("randomProjects", "le randomProjects n'est pas trouvé");
 
-        JSONObject jsonProjectLists = null;
-        try {
-            jsonProjectLists = new JSONObject(project_random);
-            mProjectList = UserUtils.parseForProjectsForPorte(jsonProjectLists);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        if(project_random.contains("*")){
+            String projetSansEtoile = project_random.substring(1);
+            String projetSansAccoladeG = projetSansEtoile.replace("[", "");
+            String projetSansAccoladeD = projetSansAccoladeG.replace("]", "");
+            String projetSansVirgule = projetSansAccoladeD.replace(",", "");
+            String[] idProjetsList = projetSansVirgule.split(" ");
 
-        for(int i = 0; i<this.mProjectList.size();i++){
-            System.out.println();
-        }
+            ArrayList<Integer> idProjets = new ArrayList<>();
+            for (int i = 0; i < idProjetsList.length; i++) {
+                if (isNumeric(idProjetsList[i])) {
+                    idProjets.add(Integer.parseInt(idProjetsList[i]));
+                    mProjectList.add(new Project(Integer.parseInt(idProjetsList[i])));
+                }
+            }
 
-        //set adapter to recyclerview
-        mAdapter = new ListProjectsAdapterCom(mProjectList,this);
-        mRecyclerView.setAdapter(mAdapter);
+            //set adapter to recyclerview
+            mAdapter = new ListProjectsAdapterCom(mProjectList,this);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+        else {
+            JSONObject jsonProjectLists = null;
+            try {
+                jsonProjectLists = new JSONObject(project_random);
+                mProjectList = UserUtils.parseForProjectsForPorte(jsonProjectLists);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //set adapter to recyclerview
+            mAdapter = new ListProjectsAdapterCom(mProjectList,this);
+            mRecyclerView.setAdapter(mAdapter);
+        }
     }
 
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
