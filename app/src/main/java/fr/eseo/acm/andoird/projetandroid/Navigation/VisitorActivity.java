@@ -4,6 +4,8 @@ package fr.eseo.acm.andoird.projetandroid.Navigation;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.telephony.PhoneNumberUtils;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +29,8 @@ public class VisitorActivity extends AppCompatActivity {
     private ListProjectsAdapterRandomVisitor mAdapter;
     private List<Project> mProjectList;
     ListProjectsAdapter.ProjectViewHolder holder;
+    private static final String TAG = "MyActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,21 +46,68 @@ public class VisitorActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String project_random = sharedPref.getString("randomProjects", "le randomProjects n'est pas trouvé");
 
-        JSONObject jsonProjectLists = null;
+        if (project_random.contains("*")) {
+            String projetSansEtoile = project_random.substring(1);
+            String projetSansAccoladeG = projetSansEtoile.replace("[", "");
+            String projetSansAccoladeD = projetSansAccoladeG.replace("]", "");
+            String projetSansVirgule = projetSansAccoladeD.replace(",", "");
+            String[] idProjetsList = projetSansVirgule.split(" ");
+
+            ArrayList<Integer> idProjets = new ArrayList<>();
+            for (int i = 0; i < idProjetsList.length; i++) {
+                if (isNumeric(idProjetsList[i])) {
+                    idProjets.add(Integer.parseInt(idProjetsList[i]));
+                }
+            }
+
+            //LIST PROJECT FROM ID
+            ArrayList<Project> listProjets = new ArrayList<>();
+
+            String projects = sharedPref.getString("projets", "les projets ne sont pas trouvés");
+
+            List<Project> mProjectList = null;
+            try {
+                mProjectList = UserUtils.parseForProjectsWithDescrip(new JSONObject(projects));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            for (int i = 0; i < idProjets.size(); i++) {
+                for (int j = 0; j < mProjectList.size(); j++) {
+                    if (idProjets.get(i) == mProjectList.get(j).getIdProject()) {
+                        listProjets.add(mProjectList.get(j));
+                    }
+                }
+            }
+
+            
+            mAdapter = new ListProjectsAdapterRandomVisitor(listProjets, this);
+            mRecyclerView.setAdapter(mAdapter);
+
+        } else {
+            JSONObject jsonProjectLists = null;
+            try {
+                jsonProjectLists = new JSONObject(project_random);
+                mProjectList = UserUtils.parseForProjectsForPorte(jsonProjectLists);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            //set adapter to recyclerview
+            mAdapter = new ListProjectsAdapterRandomVisitor(mProjectList, this);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+
+
+    }
+
+    public static boolean isNumeric(String str) {
         try {
-            jsonProjectLists = new JSONObject(project_random);
-            mProjectList = UserUtils.parseForProjectsForPorte(jsonProjectLists);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
-
-        for(int i = 0; i<this.mProjectList.size();i++){
-            System.out.println();
-        }
-
-        //set adapter to recyclerview
-        mAdapter = new ListProjectsAdapterRandomVisitor(mProjectList,this);
-        mRecyclerView.setAdapter(mAdapter);
     }
 
 }

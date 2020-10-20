@@ -52,12 +52,6 @@ public class ListProjectsAdapterRandomVisitor extends RecyclerView.Adapter<ListP
                 editor.commit();
                 context.startActivity(intent);
 
-                /*
-                Intent intent = new Intent(context, DetailsActivityRandom.class);
-                String emplacement = position + "";
-                intent.putExtra("position", emplacement);
-                context.startActivity(intent);
-                 */
             }
         });
     }

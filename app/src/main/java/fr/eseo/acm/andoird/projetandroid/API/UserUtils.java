@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,6 +47,8 @@ public class UserUtils extends AppCompatActivity {
     public static List<Project> parseForProjectsForPorte(JSONObject jsonResults) throws JSONException {
         List<Project> projectsList = new ArrayList<Project>();
         JSONArray jsonProjectsList = jsonResults.getJSONArray("projects");
+        Log.i("", "valeur de liste json = " + jsonProjectsList);
+
         for (int i = 0; i < jsonProjectsList.length(); i++) {
             JSONObject project = jsonProjectsList.getJSONObject(i);
             int idProject = project.getInt("idProject");

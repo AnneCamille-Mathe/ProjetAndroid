@@ -18,6 +18,8 @@ import java.security.cert.CertificateException;
 
 import fr.eseo.acm.andoird.projetandroid.API.API;
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListJuryFragment;
+import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectChoix;
+import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectsFragment;
 import fr.eseo.acm.andoird.projetandroid.Fragments.RandomProjectsActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 
@@ -64,16 +66,21 @@ public class ComJuryActivity extends API {
         startActivity(intent);
     }
 
-    public void genereChoix(){
-        System.out.println("CHOIX");
-    }
-
     public String getRandomProject() throws CertificateException, NoSuchAlgorithmException, KeyStoreException, IOException, KeyManagementException {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String username = sharedPref.getString("saved_username", "le login n'est pas trouvé");
         String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");
-        String[] params = new String[] {API.API_USER, username, API.API_TOKEN, token};
+        String[] params = new String[]{API.API_USER, username, API.API_TOKEN, token};
         URL url = this.buildRequest(API.API_PORTE, params);
         return this.getReplyFromHttpUrl(url);
     }
+
+    public void genereChoix() {
+        Intent intent = new Intent(this, ChoixNbProjects.class);
+        startActivity(intent);
+
+    }
+
+
+
 }

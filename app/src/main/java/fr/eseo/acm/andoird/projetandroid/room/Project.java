@@ -50,6 +50,12 @@ public class Project {
         this.posters = poster;
     }
 
+    public Project(int idProject, String title){
+        this.idProject = idProject;
+        this.title = title;
+        this.description = "d";
+    }
+
     public int getIdProject() {
         return idProject;
     }

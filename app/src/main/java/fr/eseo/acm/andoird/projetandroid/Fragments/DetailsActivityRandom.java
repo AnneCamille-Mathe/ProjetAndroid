@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
 
 public class DetailsActivityRandom extends API {
+    private static final String TAG = "MyActivity";
 
     private  String position;
     private String projet;
