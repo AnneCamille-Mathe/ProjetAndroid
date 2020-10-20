@@ -20,6 +20,7 @@ import fr.eseo.acm.andoird.projetandroid.API.UserUtils;
 import fr.eseo.acm.andoird.projetandroid.R;
 import fr.eseo.acm.andoird.projetandroid.adapter.ListProjectsAdapter;
 import fr.eseo.acm.andoird.projetandroid.adapter.ListProjectsAdapterCom;
+import fr.eseo.acm.andoird.projetandroid.adapter.ListProjectsAdapterComChoix;
 import fr.eseo.acm.andoird.projetandroid.adapter.ListProjectsAdapterRandom;
 import fr.eseo.acm.andoird.projetandroid.adapter.ListProjectsAdapterRandomVisitor;
 import fr.eseo.acm.andoird.projetandroid.room.Project;
@@ -60,7 +61,7 @@ public class ComNotesActivity extends AppCompatActivity {
             }
 
             //set adapter to recyclerview
-            mAdapter = new ListProjectsAdapterCom(mProjectList,this);
+            ListProjectsAdapterComChoix mAdapter = new ListProjectsAdapterComChoix(mProjectList,this);
             mRecyclerView.setAdapter(mAdapter);
         }
         else {

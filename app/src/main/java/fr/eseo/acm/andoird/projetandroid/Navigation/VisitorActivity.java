@@ -29,7 +29,6 @@ public class VisitorActivity extends AppCompatActivity {
     private ListProjectsAdapterRandomVisitor mAdapter;
     private List<Project> mProjectList;
     ListProjectsAdapter.ProjectViewHolder holder;
-    private static final String TAG = "MyActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

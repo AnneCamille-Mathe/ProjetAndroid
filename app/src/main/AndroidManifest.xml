@@ -32,6 +32,7 @@
         <activity android:name=".Navigation.FullScreenPosterActivity" />
         <activity android:name=".Fragments.ListProjectChoix" />
         <activity android:name=".Navigation.ChoixNbProjects" />
+        <activity android:name=".Fragments.NotesComActivityChoix" />
 
         <activity
             android:name=".API.API"
