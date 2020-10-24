@@ -3,4 +3,5 @@
     <item android:id="@+id/projects" android:title="Liste des projets"></item>
     <item android:id="@+id/jury" android:title="Création jury"></item>
     <item android:id="@+id/marks" android:title="Notes et commentaires"></item>
+    <item android:id="@+id/downloads" android:title="Téléchargement"></item>
 </menu>

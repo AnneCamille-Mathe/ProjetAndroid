@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import fr.eseo.acm.andoird.projetandroid.API.API;
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListJuryFragment;
 import fr.eseo.acm.andoird.projetandroid.Fragments.ListProjectsFragment;
+import fr.eseo.acm.andoird.projetandroid.Fragments.TelechargementActivity;
 import fr.eseo.acm.andoird.projetandroid.R;
 
 import java.net.URL;
@@ -62,6 +63,9 @@ public class ChoixMenus extends API {
                 case R.id.marks:
                     openActivityNotesCom();
                     break;
+                case R.id.downloads:
+                    openActivityTelechargement();
+                    break;
             }
         } else if (role == 1) {
             switch (item.getItemId()) {
@@ -93,6 +97,11 @@ public class ChoixMenus extends API {
 
     public void openActivityNotesCom() {
         Intent intent = new Intent(this, ComNotesActivity.class);
+        startActivity(intent);
+    }
+
+    public void openActivityTelechargement(){
+        Intent intent = new Intent(this, TelechargementActivity.class);
         startActivity(intent);
     }
 
