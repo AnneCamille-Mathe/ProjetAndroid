@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,8 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import fr.eseo.acm.andoird.projetandroid.API.API;
@@ -52,7 +51,7 @@ public class JuryNotesActivity extends API {
         }
 
         Button button = findViewById(R.id.validerNote);
-        TextView givenNote = findViewById(R.id.givenNote);
+        final TextView givenNote = findViewById(R.id.givenNote);
         final Spinner students = findViewById(R.id.spinnerStudents);
         students.setVisibility(View.VISIBLE);
 
@@ -79,6 +78,25 @@ public class JuryNotesActivity extends API {
                 else {
                     JuryNotesActivity.this.enregistrerNote(v);
                 }
+            }
+        });
+
+        students.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if (!selectedItem.equals("Tous")){
+                    String noteMoy = getAverageMark(selectedItem);
+                    givenNote.setText("Note moyenne de cet étudiant : "+noteMoy);
+                }
+                else{
+                    givenNote.setText("Note attribuée à ce projet : "+noteProjet);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -124,5 +142,35 @@ public class JuryNotesActivity extends API {
                                         API.API_TOKEN, token};
         URL url = this.buildRequest(API.API_NEWNT, params);
         return this.getReplyFromHttpUrl(url);
+    }
+
+    public String getAverageMark(String student){
+        String forename = student.split(" ")[1];
+        String surname = student.split(" ")[0];
+        boolean finded = false;
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String username = sharedPref.getString("saved_username", "le login n'est pas trouvé");
+        String token = sharedPref.getString("saved_token", "le token n'est pas trouvé");
+        int id = getIntent().getIntExtra("idProject", 0);
+        String[] params = new String[] {API.API_USER, username, API.API_PROJECT_ID, String.valueOf(id),
+                                        API.API_TOKEN, token};
+        URL url = this.buildRequest(API.API_NOTES, params);
+        String reply = this.getReplyFromHttpUrl(url);
+        String[] splitted_reply = reply.split("\"");
+
+        int i=0;
+        String avgNote = "0";
+
+        while (!finded){
+            String prenom = splitted_reply[15+i*14];
+            String nom = splitted_reply[19+i*14];
+            if (forename.equals(prenom) && surname.equals(nom)){
+                finded = true;
+                avgNote = splitted_reply[24+i*14].split(": ")[1].split(" ")[0];
+            }
+            i++;
+        }
+        return avgNote;
     }
 }
