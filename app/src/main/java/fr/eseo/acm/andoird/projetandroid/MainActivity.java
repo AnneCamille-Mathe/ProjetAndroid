@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import fr.eseo.acm.andoird.projetandroid.Navigation.Connexion;
+import fr.eseo.acm.andoird.projetandroid.navigation.Connexion;
 
 public class MainActivity extends AppCompatActivity {
     @Override

@@ -14,32 +14,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Navigation.ChoixMenus" />
-        <activity android:name=".Navigation.Connexion" />
-        <activity android:name=".Navigation.ComJuryActivity" />
-        <activity android:name=".Navigation.ComNotesActivity" />
-        <activity android:name=".Navigation.JuryDetailsActivity" />
-        <activity android:name=".Fragments.ListProjectsFragment" />
-        <activity android:name=".Fragments.DetailsActivity" />
-        <activity android:name=".Fragments.ListJuryFragment" />
-        <activity android:name=".Fragments.RandomProjectsActivity" />
-        <activity android:name=".Navigation.VisitorActivity" />
-        <activity android:name=".Fragments.VisitorNotesActivity" />
-        <activity android:name=".Fragments.DetailsActivityRandom" />
-        <activity android:name=".Navigation.ChoixMenusVisitor" />
-        <activity android:name=".Fragments.NotesComActivity" />
-        <activity android:name=".Fragments.VisitorComActivity" />
-        <activity android:name=".Fragments.JuryNotesActivity" />
-        <activity android:name=".Navigation.FullScreenPosterActivity" />
-        <activity android:name=".Fragments.ListProjectChoix" />
-        <activity android:name=".Navigation.ChoixNbProjects" />
-        <activity android:name=".Fragments.NotesComActivityChoix" />
-        <activity android:name=".Navigation.EmplacementPlan" />
-        <activity android:name=".Fragments.TelechargementActivity" />
+        <activity android:name=".navigation.ChoixMenus" />
+        <activity android:name=".navigation.Connexion" />
+        <activity android:name=".activities.com.ComJuryActivity" />
+        <activity android:name=".activities.com.ComNotesActivity" />
+        <activity android:name=".activities.jury.JuryDetailsActivity" />
+        <activity android:name=".activities.ListProjectsActivity" />
+        <activity android:name=".activities.DetailsActivity" />
+        <activity android:name=".activities.jury.ListJuryActivity" />
+        <activity android:name=".activities.RandomProjectsActivity" />
+        <activity android:name=".activities.visitor.VisitorActivity" />
+        <activity android:name=".activities.visitor.VisitorNotesActivity" />
+        <activity android:name=".activities.DetailsActivityRandom" />
+        <activity android:name=".navigation.ChoixMenusVisitor" />
+        <activity android:name=".activities.com.NotesComActivity" />
+        <activity android:name=".activities.visitor.VisitorComActivity" />
+        <activity android:name=".activities.jury.JuryNotesActivity" />
+        <activity android:name=".poster.FullScreenPosterActivity" />
+        <activity android:name=".activities.ListProjectChoix" />
+        <activity android:name=".navigation.ChoixNbProjects" />
+        <activity android:name=".activities.com.NotesComActivityChoix" />
+        <activity android:name=".navigation.EmplacementPlan" />
+        <activity android:name=".activities.TelechargementActivity" />
 
 
         <activity
-            android:name=".API.API"
+            android:name=".api.API"
             tools:ignore="Instantiatable" />
 
         <activity android:name=".MainActivity">
